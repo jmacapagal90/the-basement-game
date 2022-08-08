@@ -1,5 +1,5 @@
 {
-    "name": "example-project",
+    "name": "the-basement-game",
     "description": "Build scripts for Heroku",
     "engines": {
       "node": ">= 14"
@@ -11,3 +11,5 @@
       "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
     }
   }
+
+  
