@@ -6,7 +6,9 @@ import Game from './Game'
 function App() {
   const [decisions, setDecisions] = useState("");
   const [outcomes, setOutcomes] = useState("");
-
+  const [userAnswer, setUserAnswer] = useState(0)
+  ///
+  //fetch Decision w Outcome Data
   useEffect(() => {
     //Fetch Decisions Async
     const fetchDecisions = async () => {
@@ -16,17 +18,32 @@ function App() {
     }
 
     fetchDecisions().catch(console.error)
-
-    //Fetch Outcomes Async
-    const fetchOutcomes = async () => {        
-      const data = await fetch("/outcomes")
-                  .then((r) => r.json())
-                  .then((outcome_data) => setOutcomes(outcome_data));
+  }, []);
+  ///
+    //handling answer Yes
+    function handleTrue(e){
+      setUserAnswer(true)
+      setDeath()
     }
-    fetchOutcomes()
-    }, []);
+    //handling answer No
+    function handleFalse(e){
+      setUserAnswer(false)
+      setDeath()
+    }
+ 
+    const findDecision = decisions && decisions.find(decision => decision.id === 1)
 
-    console.log(decisions)
+    function setDeath(){
+      setOutcome()
+    }
+    
+    function setOutcome(){
+      if (findDecision.answer !== userAnswer){
+        console.log(findDecision.outcome.result)
+        } else {
+        console.log("nice")
+    }
+    }
 
   return (
     <BrowserRouter>
@@ -36,7 +53,7 @@ function App() {
             <h1>Test Route</h1>
           </Route>
           <Route path="/">
-            <Game decisions={decisions} outcomes={outcomes}/>
+            <Game findDecision={findDecision} outcomes={outcomes} handleTrue={handleTrue} handleFalse={handleFalse}/>
           </Route>
         </Switch>
       </div>
