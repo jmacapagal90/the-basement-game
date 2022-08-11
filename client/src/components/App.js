@@ -6,18 +6,19 @@ import Home from './Home';
 
 function App() {
   const [ decisions, setDecisions ] = useState("");
-  const [ outcomes, setOutcomes ] = useState("");
   const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(null)
   const [ turn, setTurn ] = useState(1)
   const isFirstRender = useRef(false)
+
+  console.log("current turn:", turn)
   ///
 
   //fetch Decision w Outcome Data
   useEffect(() => {
     //Fetch Decisions Async
     const fetchDecisions = async () => {
-        const data = await fetch("/decisions")
+        await fetch("/decisions")
                     .then((r) => r.json())
                     .then((decision_data) => setDecisions(decision_data));
     }
@@ -37,40 +38,34 @@ function App() {
   // if the answer is correct, i need to show the next decision by grabbing the decision with the prev_decision_id of the prev decision...
 
   //need to find where prev_decision_id = current_id - 1?
-  const findDecision = decisions && decisions.find(decision => {
-    if (turn === 1){
-      return decision.id
-    } else {
-      return turn
-    }
-  })
-  console.log(findDecision)
-  console.log(turn)
+  const findDecision =  decisions && decisions.find(decision => decision.id === turn)
+
   //handling answer Yes
   function handleTrue(){
     setUserAnswer(true) 
-    setTurn(()=> turn + 1)
+    checkAnswer()
   }
 
   //handling answer No
   function handleFalse(){
     setUserAnswer(false)
-    setTurn(()=> turn + 1)
+    checkAnswer()
   }
-
+  console.log(isCorrect)
   // checking if answer is good
   function checkAnswer(){
-     if (userAnswer === findDecision.answer){
+     if (userAnswer === findDecision.answer && findDecision){
       setIsCorrect(true)
-      } else if (userAnswer !== findDecision.answer){
+      setTurn(()=>turn+1)
+      } else if (userAnswer !== findDecision.answer && findDecision){
       setIsCorrect(false)
      }
   }
-
+  //clears cache upon return home
   function clearCache(){
     setUserAnswer(null)
     setIsCorrect(null)
-    setTurn(0)
+    setTurn(1)
   }
 
   return (
