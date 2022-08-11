@@ -1,7 +1,8 @@
 // client/src/components/App.js
 import { useState, useEffect,useRef } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Game from './Game'
+import Game from './Game';
+import Home from './Home';
 
 function App() {
   const [decisions, setDecisions] = useState("");
@@ -26,9 +27,7 @@ function App() {
   useEffect(()=>{
     if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
       isFirstRender.current = true;
-    } else {
-      checkAnswer(); //subsequent renders will set isFirstRender to false and then we can check answer
-    }
+    } 
   },[userAnswer]) //use effect will run when userAnswer is changed by handleTrue or handleFalse
 
   //this is grabbing one decision for now
@@ -37,35 +36,43 @@ function App() {
   //handling answer Yes
   function handleTrue(){
     setUserAnswer(true) 
+    checkAnswer()
   }
 
   //handling answer No
   function handleFalse(){
     setUserAnswer(false)
+    checkAnswer()
   }
   
-  async function checkAnswer(){
+    async function checkAnswer(){
     if (userAnswer === findDecision.answer){
-      console.log("You gud")
-    } else if (userAnswer !== findDecision.answer && findDecision){
-      console.log(await findDecision.outcome.result)
+      setIsCorrect(true)
+    } else if (userAnswer !== findDecision.answer){
+      setIsCorrect(false)
      }
+  }
+
+  function clearCache(){
+    setUserAnswer(null)
   }
 
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
+          <Route exact path="/">
+            <Home />
           </Route>
-          <Route path="/">
+          <Route exact path="/game">
             <Game 
             findDecision={findDecision} 
             isCorrect={isCorrect} 
             handleTrue={handleTrue} 
             handleFalse={handleFalse} 
-            userAnswer={userAnswer}/>
+            userAnswer={userAnswer}
+            clearCache={clearCache}
+            />
           </Route>
         </Switch>
       </div>
