@@ -6,7 +6,6 @@ import Home from './Home';
 
 function App() {
   const [ decisions, setDecisions ] = useState("");
-  const [ outcomes, setOutcomes ] = useState("");
   const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(null)
   const [ turn, setTurn ] = useState(1)
@@ -19,7 +18,7 @@ function App() {
   useEffect(() => {
     //Fetch Decisions Async
     const fetchDecisions = async () => {
-        const data = await fetch("/decisions")
+        await fetch("/decisions")
                     .then((r) => r.json())
                     .then((decision_data) => setDecisions(decision_data));
     }
@@ -64,7 +63,7 @@ function App() {
   function clearCache(){
     setUserAnswer(null)
     setIsCorrect(null)
-    setTurn(0)
+    setTurn(1)
   }
 
   return (
