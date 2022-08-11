@@ -4,14 +4,38 @@ import { Link } from "react-router-dom";
 function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache }){
     const { prompt } = findDecision
     const { outcome } = findDecision
-    // console.log(outcome.result)
+    const death = outcome && outcome.result
+   
+    function showPrompt(){
+        return (        
+            <>
+                <h1>{prompt}</h1>
+                <button onClick={()=>handleTrue()}>Yes</button>
+                <button onClick={()=>handleFalse()}>No</button>
+                <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
+            </>
+            )
+    }
 
-    function renderGame(){
-        if (isCorrect == true){
-            return <h1>you good</h1>
-        } else {
-            return <h1>you ded</h1>
-        }
+    function showDeath(){
+        return (
+            <>
+                <h1>{death}</h1>
+                <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
+            </>
+            )
+    }
+
+    const renderPage = () => {
+        if (userAnswer === null || userAnswer !== null && isCorrect === true){
+            return (        
+                <>{showPrompt()}</>
+            )
+        } else if (userAnswer !== null && isCorrect === false){
+                return (        
+                <>{showDeath()}</>
+        )
+     }
     }
     
     console.log("isCorrect:",isCorrect)
@@ -19,10 +43,7 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
 
     return (
         <>
-              <h1>{prompt}</h1>
-              <button onClick={()=>handleTrue()}>Yes</button>
-              <button onClick={()=>handleFalse()}>No</button>
-              <Link to="/">Return Home</Link>
+        {renderPage()}
         </>
     )
 }
