@@ -1,8 +1,8 @@
 puts "Starting Seeding"
-# Decision.destroy_all
-# Decision.reset_pk_sequence
-# Outcome.destroy_all
-# Outcome.reset_pk_sequence
+Decision.destroy_all
+
+Outcome.destroy_all
+
 
 Decision.create!(
     id: 1,
@@ -29,6 +29,19 @@ Outcome.create!(
     id:2,
     result: "You don't open the toolbox, and instead wait out the next 3 week in misery until you starve to death.",
     decision_id: 2
+)
+
+Decision.create!(
+    id:3,
+    prompt: "You open the toolbox, and find a walkie-talkie. Do you use it?",
+    answer: 1,
+    prev_decision_id: 2
+)
+
+Outcome.create!(
+    id:3,
+    result: "The walkie-talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded.",
+    decision_id: 3
 )
 
 puts "Seeding Finished"
