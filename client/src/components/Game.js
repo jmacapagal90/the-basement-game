@@ -5,8 +5,8 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
     const { prompt } = findDecision
     const { outcome } = findDecision
     const death = outcome && outcome.result
-   
-    function showPrompt(){
+    /// handling Prompt
+    function handlePrompt(){
         return (        
             <>
                 <h1>{prompt}</h1>
@@ -16,8 +16,8 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
             </>
             )
     }
-
-    function showDeath(){
+    // showing Death
+    function handleDeath(){
         return (
             <>
                 <h1>{death}</h1>
@@ -25,21 +25,19 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
             </>
             )
     }
-
+    //conditionally rendering Page depending on answers
     const renderPage = () => {
-        if (userAnswer === null || userAnswer !== null && isCorrect === true){
+        if (userAnswer === null ||  isCorrect === true){
             return (        
-                <>{showPrompt()}</>
+                <>{handlePrompt()}</>
             )
         } else if (userAnswer !== null && isCorrect === false){
                 return (        
-                <>{showDeath()}</>
+                <>{handleDeath()}</>
         )
      }
     }
-    
-    console.log("isCorrect:",isCorrect)
-    console.log("userAnswer:",userAnswer)
+
 
     return (
         <>
