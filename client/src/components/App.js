@@ -43,13 +43,15 @@ function App() {
   //handling answer Yes
   function handleTrue(){
     setUserAnswer(true) 
+    checkAnswer()
   }
 
   //handling answer No
   function handleFalse(){
     setUserAnswer(false)
+    checkAnswer()
   }
-
+  console.log(isCorrect)
   // checking if answer is good
   function checkAnswer(){
      if (userAnswer === findDecision.answer && findDecision){
@@ -59,7 +61,7 @@ function App() {
       setIsCorrect(false)
      }
   }
-
+  //clears cache upon return home
   function clearCache(){
     setUserAnswer(null)
     setIsCorrect(null)
