@@ -21,7 +21,7 @@ function Login({ setUser }) {
         r.json().then((user) => setUser(user));
         <Redirect
           to={{
-            pathname: '/games',
+            pathname: '/game',
             search: '?utm=your+face',
           }}
         />;
