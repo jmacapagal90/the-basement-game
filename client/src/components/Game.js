@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache }){
-    const prompt  = findDecision && findDecision.prompt
-    const outcome = findDecision && findDecision.outcome
-    const death = outcome && outcome.result
+    const { prompt }  = findDecision 
+    const { outcome } = findDecision 
+    const { result } = outcome
     /// handling Prompt
     function handlePrompt(){
         return (        
@@ -19,7 +19,7 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
     function handleDeath(){
         return (
             <>
-                <h1>{death}</h1>
+                <h1>{result}</h1>
                 <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
             </>
             )
