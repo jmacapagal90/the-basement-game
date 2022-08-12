@@ -1,10 +1,11 @@
 // client/src/components/App.js
 import { useState, useEffect,useRef } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Game from './Game';
 import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
+import NavBar from './NavBar';
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -84,11 +85,18 @@ function App() {
 
   return (
     <BrowserRouter>
+      <div>
+        <NavBar user={user} setUser={setUser} />
+      </div>
       <div className="App">
         <Switch>
-          <Route exact path="/login">
-            <Login />
-          </Route>
+            <Route path='/login'>
+                {user ? (
+                  <Redirect to='/game' />
+                ) : (
+                  <Login setUser={setUser} />
+                )}
+              </Route>
           <Route exact path="/signup">
             <Signup  />
           </Route>
@@ -98,7 +106,7 @@ function App() {
           <Route exact path="/home">
             <Home user={user} />
           </Route>
-          <Route path="/game">
+          <Route exact path="/game">
             <Game 
             findDecision={findDecision} 
             isCorrect={isCorrect} 

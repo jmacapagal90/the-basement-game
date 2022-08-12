@@ -25,8 +25,8 @@ class PlayersController < ApplicationController
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
       end
 
-    def user_params
-        params.permit(:username, :password, :password_confirmation, :email)
+    def player_params
+        params.permit(:username, :password, :password_confirmation)
     end
 
 end

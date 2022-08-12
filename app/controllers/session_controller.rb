@@ -1,8 +1,8 @@
 class SessionController < ApplicationController
     def create
         player = Player.find_by(username: params[:username])
-        if user&.authenticate(params[:password])
-            session[:user_id] = user.id
+        if player&.authenticate(params[:password])
+            session[:user_id] = player.id
             render json: player, status: :created
         else
             render json: { error: "Invalid username or password" }, status: :unauthorized
