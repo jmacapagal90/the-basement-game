@@ -11,7 +11,7 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
                 <h1>{prompt}</h1>
                 <button onClick={()=>handleTrue()}>Yes</button>
                 <button onClick={()=>handleFalse()}>No</button>
-                <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
+                <Link to="/" onClick={()=>clearCache()}>Return Home</Link> 
             </>
             )
     }
