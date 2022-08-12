@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_09_190248) do
+ActiveRecord::Schema.define(version: 2022_08_12_163108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,36 @@ ActiveRecord::Schema.define(version: 2022_08_09_190248) do
     t.index ["prev_decision_id"], name: "index_decisions_on_prev_decision_id"
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "outcome"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "outcomes", force: :cascade do |t|
     t.string "result"
     t.bigint "decision_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["decision_id"], name: "index_outcomes_on_decision_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "game_id"
+    t.integer "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_scores_on_game_id"
+    t.index ["player_id"], name: "index_scores_on_player_id"
   end
 
   add_foreign_key "decisions", "decisions", column: "prev_decision_id"

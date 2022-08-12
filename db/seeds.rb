@@ -1,8 +1,6 @@
 puts "Starting Seeding"
-Decision.destroy_all
 
-Outcome.destroy_all
-
+puts "Seeding The Game"
 
 Decision.create!(
     id: 1,
@@ -148,5 +146,78 @@ Outcome.create!(
     result: "Thanks for playing my game!  If you liked it, do not like and subscribe. Instead, go and live your life. And then maybe play it again. And then also follow my game on Instagram, @thebasementgame, for more updates, including maps, new features, and more!",
     decision_id: 11
 )
+puts "Finished Seeding The Game"
+puts "Seeding The Other Stuff"
+
+Game.create!(
+    outcome: "Thanks for playing my game!  If you liked it, do not like and subscribe. Instead, go and live your life. And then maybe play it again. And then also follow my game on Instagram, @thebasementgame, for more updates, including maps, new features, and more!"
+)
+
+Game.create!(
+    outcome: "An axe falls from the ceiling and slices your head off... You are dead.  (Did you really think I would make it that easy?!)"
+)
+Game.create!(
+    outcome: "You've had enough, and smash every window in the Chevelle. In your anger, you fail to notice a single Black Widow spider erupt from the head of the Teddy Ruxbin. Starving for flesh, they overwhelm you as you spend your last moments with a spider in your eyeball... You are dead. "
+)
+Game.create!(
+    outcome: "You quit, and so you get dead. "
+)
+
+Player.create!(
+    id: 1,
+    username: "jmac90",
+    password: "test",
+    email: "j.macapagal90@gmail.com"
+)
+
+Player.create!(
+    id: 2,
+    username: "ramm9490",
+    password: "test",
+    email: "ramm9490@gmail.com"
+)
+
+Player.create!(
+    id: 3,
+    username: "nobleToad",
+    password: "test",
+    email: "nobleToad@gmail.com"
+)
+
+Player.create!(
+    id: 4,
+    username: "ShooterMcFahey",
+    password: "test",
+    email: "nobleToad@gmail.com"
+)
+
+Score.create!(
+    id: 1, 
+    player_id: 1,
+    game_id: 1,
+    points: 1000
+)
+Score.create!(
+    id: 2,
+    player_id: 2,
+    game_id: 2,
+    points: 100
+)
+
+Score.create!(
+    id: 3,
+    player_id: 3,
+    game_id: 3,
+    points: 500
+)
+
+Score.create!(
+    id: 4,
+    player_id: 4,
+    game_id: 4,
+    points: 0
+)
+
+puts "Finished Seeding The Other Stuff"
 
 puts "Seeding Finished"
