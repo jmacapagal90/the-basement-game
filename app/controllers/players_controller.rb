@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
             session[:user_id] = player.id
             render json: player, status: :created
         else
-            render json: {errors: player.errors.full_messages}, status: :unprocessable_entity
+            render json: {error: player.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
@@ -26,7 +26,7 @@ class PlayersController < ApplicationController
       end
 
     def player_params
-        params.permit(:username, :password, :password_confirmation, :email)
+        params.permit(:username, :password_digest, :password_confirmation, :email)
     end
 
 end

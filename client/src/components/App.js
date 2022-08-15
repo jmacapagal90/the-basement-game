@@ -6,6 +6,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import NavBar from './NavBar';
+import Scoreboard from "./Scoreboard";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -105,6 +106,9 @@ function App() {
           </Route>
           <Route exact path="/home">
             <Home user={user} />
+          </Route>
+          <Route exact path="/scores">
+            <Scoreboard user={user} />
           </Route>
           <Route exact path="/game">
             <Game 

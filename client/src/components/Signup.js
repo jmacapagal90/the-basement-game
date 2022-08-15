@@ -10,18 +10,20 @@ function SignUp({ setUser }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const formData = {
+      username: username,
+      password: password,
+      password_confirmation: passwordConfirmation,
+      email: email
+    }
 
+    console.log(formData)
     const response = await fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        password_confirmation: passwordConfirmation,
-        email: email
-      }),
+      body: JSON.stringify(formData),
     })
     
     const data = await response.json();
@@ -31,7 +33,7 @@ function SignUp({ setUser }) {
             setErrors(data.error)
         }
     }
-  
+    
   return (
     <div>
       <form onSubmit={handleSubmit}>

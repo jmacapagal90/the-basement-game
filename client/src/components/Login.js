@@ -21,17 +21,16 @@ function Login({ setUser }) {
     
     const data = await response.json()
       if (response.ok) {
-        data.json().then((user) => setUser(user));
+        data.then((data) => setUser(data));
         <Redirect
           to={{
-            pathname: '/game',
+            pathname: '/home',
             search: '?utm=your+face',
           }}
         />;
       } else {
         setErrors(data.error)
       }
-      console.log(errors)
     }
   return (
     <div class="game-info">
