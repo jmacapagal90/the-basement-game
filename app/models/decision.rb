@@ -4,4 +4,5 @@ class Decision < ApplicationRecord
 
     has_one :outcome
 
+    belongs_to :game, optional: true
 end

@@ -1,3 +1,3 @@
 class OutcomeSerializer < ActiveModel::Serializer
-  attributes :id, :result, :decision_id
+  attributes :id, :result, :summary,:decision_id
 end

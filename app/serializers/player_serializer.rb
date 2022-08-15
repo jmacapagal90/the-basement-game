@@ -7,7 +7,7 @@ class PlayerSerializer < ActiveModel::Serializer
         player_id: score.player_id,
         game_id: score.game_id,
         points: score.points,
-        outcome: score.game.outcome
+        last_decision: score.game.decision_id
       }
     end
   end
