@@ -17,6 +17,7 @@ function NavBar({ user, setUser }) {
           <div>
             <Link to='/' className="link">Home</Link>
             <Link to="/" className="link" onClick={handleLogoutClick}>Logout</Link>
+            <Link to="/scores" className="link">Scores</Link>
           </div>
         ) : (
           <>

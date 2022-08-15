@@ -6,6 +6,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import NavBar from './NavBar';
+import Scoreboard from "./Scoreboard";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -92,19 +93,23 @@ function App() {
         <Switch>
             <Route path='/login'>
                 {user ? (
-                  <Redirect to='/game' />
+                  <Redirect to='/' />
                 ) : (
                   <Login setUser={setUser} />
                 )}
               </Route>
           <Route exact path="/signup">
-            <Signup  />
+              {user ? (
+                  <Redirect to='/' />
+                ) : (
+                  <Signup setUser={setUser}/>
+              )}
           </Route>
           <Route exact path="/">
             <Home user={user} />
           </Route>
-          <Route exact path="/home">
-            <Home user={user} />
+          <Route exact path="/scores">
+            <Scoreboard user={user} />
           </Route>
           <Route exact path="/game">
             <Game 

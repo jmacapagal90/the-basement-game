@@ -19,19 +19,13 @@ function Login({ setUser }) {
       }),
     })
     
-    const data = await response.json()
+    const data = response.json()
       if (response.ok) {
-        data.json().then((user) => setUser(user));
-        <Redirect
-          to={{
-            pathname: '/game',
-            search: '?utm=your+face',
-          }}
-        />;
+        data.then((data) => setUser(data));
+        <Redirect to='/' />;
       } else {
         setErrors(data.error)
       }
-      console.log(errors)
     }
   return (
     <div class="game-info">
@@ -65,6 +59,7 @@ function Login({ setUser }) {
       {errors && errors.length > 0 ? (
         <p style={{ color: "red" }}>{errors}</p>
       ) : <></>}
+
     </div>
   );
 }

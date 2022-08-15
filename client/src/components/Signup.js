@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function SignUp({ setUser }) {
   const [username, setUsername] = useState('');
@@ -10,28 +10,31 @@ function SignUp({ setUser }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const formData = {
+      username: username,
+      password: password,
+      password_confirmation: passwordConfirmation,
+      email: email
+    }
 
+    console.log(formData)
     const response = await fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        password_confirmation: passwordConfirmation,
-        email: email
-      }),
+      body: JSON.stringify(formData),
     })
     
-    const data = await response.json();
+    const data = response.json();
         if (response.ok) {
             data.then((data) => setUser(data));
+            <Redirect to='/'/>;
         } else {
             setErrors(data.error)
         }
     }
-  
+    
   return (
     <div>
       <form onSubmit={handleSubmit}>
