@@ -93,18 +93,19 @@ function App() {
         <Switch>
             <Route path='/login'>
                 {user ? (
-                  <Redirect to='/game' />
+                  <Redirect to='/' />
                 ) : (
                   <Login setUser={setUser} />
                 )}
               </Route>
           <Route exact path="/signup">
-            <Signup  />
+              {user ? (
+                  <Redirect to='/' />
+                ) : (
+                  <Signup setUser={setUser}/>
+              )}
           </Route>
           <Route exact path="/">
-            <Home user={user} />
-          </Route>
-          <Route exact path="/home">
             <Home user={user} />
           </Route>
           <Route exact path="/scores">

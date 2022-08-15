@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 function SignUp({ setUser }) {
   const [username, setUsername] = useState('');
@@ -26,9 +26,10 @@ function SignUp({ setUser }) {
       body: JSON.stringify(formData),
     })
     
-    const data = await response.json();
+    const data = response.json();
         if (response.ok) {
             data.then((data) => setUser(data));
+            <Redirect to='/'/>;
         } else {
             setErrors(data.error)
         }

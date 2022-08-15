@@ -19,15 +19,10 @@ function Login({ setUser }) {
       }),
     })
     
-    const data = await response.json()
+    const data = response.json()
       if (response.ok) {
         data.then((data) => setUser(data));
-        <Redirect
-          to={{
-            pathname: '/home',
-            search: '?utm=your+face',
-          }}
-        />;
+        <Redirect to='/' />;
       } else {
         setErrors(data.error)
       }
@@ -64,6 +59,7 @@ function Login({ setUser }) {
       {errors && errors.length > 0 ? (
         <p style={{ color: "red" }}>{errors}</p>
       ) : <></>}
+
     </div>
   );
 }
