@@ -6,11 +6,12 @@ function SignUp({ setUser }) {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [email, setEmail] = useState('');
+  const [errors, setErrors] = useState("")
 
-  function handleSubmit(e) {
-    console.log(e);
+  async function handleSubmit(e) {
     e.preventDefault();
-    fetch('/signup', {
+
+    const response = await fetch('/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,13 +22,16 @@ function SignUp({ setUser }) {
         password_confirmation: passwordConfirmation,
         email: email
       }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }
-
+    })
+    
+    const data = await response.json();
+        if (response.ok) {
+            data.then((data) => setUser(data));
+        } else {
+            setErrors(data.error)
+        }
+    }
+  
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -68,6 +72,9 @@ function SignUp({ setUser }) {
         <p>
         Already a user? <Link to='/login'>Sign In</Link>
       </p>
+      {errors && errors.length > 0 ? (
+        <p style={{ color: "red" }}>Please Fill Out All Required Fields</p>
+      ) : <></>}
       </form>
     </div>
   );
