@@ -4,10 +4,11 @@ import { Link, Redirect } from 'react-router-dom';
 function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState('')
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    fetch('/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -16,19 +17,22 @@ function Login({ setUser }) {
         username: username,
         password: password,
       }),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
+    })
+    
+    const data = await response.json()
+      if (response.ok) {
+        data.json().then((user) => setUser(user));
         <Redirect
           to={{
             pathname: '/game',
             search: '?utm=your+face',
           }}
         />;
+      } else {
+        setErrors(data.error)
       }
-    });
-  }
-
+      console.log(errors)
+    }
   return (
     <div class="game-info">
       <form onSubmit={handleSubmit}>
@@ -58,6 +62,9 @@ function Login({ setUser }) {
       <p>
         Not a user yet? <Link to='/signup'>Sign Up</Link>
       </p>
+      {errors && errors.length > 0 ? (
+        <p style={{ color: "red" }}>{errors}</p>
+      ) : <></>}
     </div>
   );
 }
