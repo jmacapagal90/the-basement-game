@@ -14,10 +14,8 @@ function App() {
   const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(null)
   const [ turn, setTurn ] = useState(1)
+  const [ gameID,setGameID] = useState(0)
   const isFirstRender = useRef(false)
-
-  console.log("current turn:", turn)
-  ///
 
   // login
 
@@ -41,6 +39,7 @@ function App() {
 
     fetchDecisions().catch(console.error)
   }, []);
+  
   //this UseEffect is running on first render
   useEffect(()=>{
     if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
@@ -56,6 +55,37 @@ function App() {
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
 
+  //POST Game
+  function startGame(){
+    fetch('/games',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        outcomes_id: 1 
+      }),
+    }).then((r)=>r.json()).then((new_game)=>setGameID(new_game.id))  
+  }
+
+  const gameObj = {
+    id: gameID,
+    outcomes_id: turn 
+    }
+console.log(gameObj)
+  
+function updateGame(){
+  console.log(gameObj)
+  fetch(`/games/${gameID}`,{
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({gameObj}),
+    }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
+}
+
+
   //handling answer Yes
   function handleTrue(){
     setUserAnswer(true) 
@@ -67,7 +97,7 @@ function App() {
     setUserAnswer(false)
     checkAnswer()
   }
-  console.log(isCorrect)
+
   // checking if answer is good
   function checkAnswer(){
      if (userAnswer === findDecision.answer && findDecision){
@@ -82,7 +112,9 @@ function App() {
     setUserAnswer(null)
     setIsCorrect(null)
     setTurn(1)
+    updateGame()
   }
+
 
   return (
     <BrowserRouter>
@@ -106,13 +138,15 @@ function App() {
               )}
           </Route>
           <Route exact path="/">
-            <Home user={user} />
+            <Home user={user} startGame={startGame}/>
           </Route>
           <Route exact path="/scores">
             <Scoreboard user={user} />
           </Route>
           <Route exact path="/game">
             <Game 
+            gameID={gameID}
+            turn={turn}
             findDecision={findDecision} 
             isCorrect={isCorrect} 
             handleTrue={handleTrue} 

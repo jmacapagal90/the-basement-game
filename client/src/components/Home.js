@@ -2,13 +2,15 @@ import { useState, useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
 import Login from './Login'
 
-function Home({ user }){
+function Home({ user, startGame }){
+
+
 
     if (user) {
         return (
             <>
                 <h1>Welcome To The Basement...</h1>
-                <Link to='/game'>Play</Link>
+                <Link to='/game' onClick={()=>startGame()}>Play</Link>
             </>
         )
     } else{

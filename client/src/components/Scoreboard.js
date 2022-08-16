@@ -16,7 +16,7 @@ function Scoreboard(){
 
     const renderScores = () => scores.map((score)=> (
         <>
-          <h2>@{score.username} - {score.points}pts</h2>
+          <h2 key={score.id}>@{score.username} - {score.points}pts</h2>
           <h2>{score.game.game_w_outcome}</h2>
           <p>{score.updated_at}</p>
         </>
