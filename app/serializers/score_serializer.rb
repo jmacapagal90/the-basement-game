@@ -1,4 +1,9 @@
 class ScoreSerializer < ActiveModel::Serializer
-  attributes :id, :player_id,:game_id,:points
+  attributes :id, :username,:game_id,:points
   has_many :game
+
+  def username
+    Player.find(object.player_id).username
+  end
+
 end
