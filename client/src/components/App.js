@@ -16,9 +16,6 @@ function App() {
   const [ turn, setTurn ] = useState(1)
   const isFirstRender = useRef(false)
 
-  console.log("current turn:", turn)
-  ///
-
   // login
 
   useEffect(() => {
@@ -41,6 +38,7 @@ function App() {
 
     fetchDecisions().catch(console.error)
   }, []);
+  
   //this UseEffect is running on first render
   useEffect(()=>{
     if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
@@ -67,7 +65,7 @@ function App() {
     setUserAnswer(false)
     checkAnswer()
   }
-  console.log(isCorrect)
+
   // checking if answer is good
   function checkAnswer(){
      if (userAnswer === findDecision.answer && findDecision){
@@ -113,6 +111,7 @@ function App() {
           </Route>
           <Route exact path="/game">
             <Game 
+            turn={turn}
             findDecision={findDecision} 
             isCorrect={isCorrect} 
             handleTrue={handleTrue} 

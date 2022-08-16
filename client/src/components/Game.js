@@ -1,15 +1,21 @@
 import { Link } from "react-router-dom";
 
-function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache }){
+function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache, turn }){
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
-    const { result } = outcomes
+    const result = outcomes && outcomes.map((outcome)=> outcome.result)
+    
+    const gameObj = {
+
+    }
+
+
 
     /// handling Prompt
     function handlePrompt(){
         return (        
             <>
-                <h1>{prompt}</h1>
+                <h2>{prompt}</h2>
                 <button onClick={()=>handleTrue()}>Yes</button>
                 <button onClick={()=>handleFalse()}>No</button>
                 <Link to="/" onClick={()=>clearCache()}>Return Home</Link> 
@@ -20,7 +26,7 @@ function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, cl
     function handleDeath(){
         return (
             <>
-                <h1>{result}</h1>
+                <h2>{result}</h2>
                 <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
             </>
             )
