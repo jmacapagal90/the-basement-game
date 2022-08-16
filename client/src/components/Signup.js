@@ -34,7 +34,7 @@ function SignUp({ setUser }) {
             setErrors(data.error)
         }
     }
-    
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

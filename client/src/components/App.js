@@ -54,6 +54,19 @@ function App() {
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
 
+  //POST Game
+  function startGame(){
+    fetch('/games',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        outcomes_id: 1 
+      }),
+    })  
+  }
+
   //handling answer Yes
   function handleTrue(){
     setUserAnswer(true) 
@@ -82,6 +95,7 @@ function App() {
     setTurn(1)
   }
 
+
   return (
     <BrowserRouter>
       <div>
@@ -104,7 +118,7 @@ function App() {
               )}
           </Route>
           <Route exact path="/">
-            <Home user={user} />
+            <Home user={user} startGame={startGame}/>
           </Route>
           <Route exact path="/scores">
             <Scoreboard user={user} />
