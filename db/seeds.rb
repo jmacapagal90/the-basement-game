@@ -3,20 +3,26 @@ puts "Starting Seeding"
 puts "Seeding The Game"
 Game.create!(
     id: 1,
-    decision_id: 11
+    outcomes_id: 11
 )
+
 
 Game.create!(
     id:2,
-    decision_id: 1
+    outcomes_id: 1
 )
 Game.create!(
     id:3,
-    decision_id: 5
+    outcomes_id: 5
 )
 Game.create!(
     id:4,
-    decision_id: 1
+    outcomes_id: 1
+)
+
+Game.create!(
+    id: 5,
+    outcomes_id: 3
 )
 
 
@@ -30,7 +36,7 @@ Decision.create!(
 Outcome.create!(
     id:1,
     result: "An axe falls from the ceiling and slices your head off... You are dead.  (Did you really think I would make it that easy?!)",
-    summary: "Got the axe.",
+    summary: "Got the axe. #AxeBodySpray",
     decision_id: 1
 )
 
@@ -45,7 +51,7 @@ Decision.create!(
 Outcome.create!(
     id:2,
     result: "The flashlight burns out. You sit in darkness for the next 3 weeks until you die of starvation... You are dead.",
-    summary: "Starved for attention.",
+    summary: "Starved for attention. #AttentionAttention",
     decision_id: 2
 )
 
@@ -59,7 +65,7 @@ Decision.create!(
 Outcome.create!(
     id:3,
     result: "The walkie-talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded... You are dead.",
-    summary: "Was the Bomb.",
+    summary: "Was the Bomb. #BombAF",
     decision_id: 3
 )
 
@@ -73,7 +79,7 @@ Decision.create!(
 Outcome.create!(
     id:4,
     result: "You frantically pull on the rope ladder, and feel the slack give out. And then a gigantic anvil drops and smashes your head like a Wile E. Coyote... You are dead.",
-    summary: "Was a smash hit",
+    summary: "Was a smash hit. #WouldGraveyardSmash",
     decision_id: 4
 )
 
@@ -87,7 +93,7 @@ Decision.create!(
 Outcome.create!(
     id:5,
     result: "You've had enough, and smash every window in the Chevelle. In your anger, you fail to notice a single Black Widow spider erupt from the head of the Teddy Ruxbin. Starving for flesh, they overwhelm you as you spend your last moments with a spider in your eyeball... You are dead. ",
-    summary: "Loves Natasha Romanoff",
+    summary: "Loves Natasha Romanoff. #ThanosWasRight",
     decision_id: 5
 )
 
@@ -102,7 +108,7 @@ Decision.create!(
 Outcome.create!(
     id:6,
     result: "A single Black Widow spider climbs out of the neck and stings you. You convulse on the ground... You are dead. ",
-    summary: "Can't wait for Black Widow 2",
+    summary: "Can't wait for Black Widow 2. #ScarJoFace",
     decision_id: 6
 )
 
@@ -116,7 +122,7 @@ Decision.create!(
 Outcome.create!(
     id:7,
     result: "You're being a little too untrustworthy, and this is getting old, no? The car explodes... You are dead. ",
-    summary: "Drove Them All Crazy",
+    summary: "Drove Them All Crazy. #GetOnTheBus",
     decision_id: 7
 )
 
@@ -130,7 +136,7 @@ Decision.create!(
 Outcome.create!(
     id:8,
     result: "You are sick, you know that?  Just for that, the car fills with mayonaise, and you suffocate in mayo. Happy now, you psychopath?!",
-    summary: "Actually said they would sacrifice another person for their survival.",
+    summary: "Actually said they would sacrifice another person for their survival. #SuperSus",
     decision_id: 8
 )
 
@@ -144,7 +150,7 @@ Decision.create!(
 Outcome.create!(
     id:9,
     result: "Just as you make it to the door, the door slams shut, and you crash head on into a titanium garage door...  You are dead. ",
-    summary: "Didn't wear their seatbelt",
+    summary: "Didn't wear their seatbelt. #ClickItOrTicket",
     decision_id: 9
 )
 
@@ -158,7 +164,7 @@ Decision.create!(
 Outcome.create!(
     id:10,
     result: "You decide to turn on the car to get out of here. Better them than you, amirite?.  The voice says, \"Great minds think alike...\"  You realize the other person got the same choice- and decided to kill you.  A huge boulder rolls down and smashes the car... You are dead.",
-    summary: "Messed around and found out",
+    summary: "Messed around and found out. #FAFO",
     decision_id: 10
 )
 
@@ -172,7 +178,7 @@ Decision.create!(
 Outcome.create!(
     id:11,
     result: "Thanks for playing my game!  If you liked it, do not like and subscribe. Instead, go and live your life. And then maybe play it again. And then also follow my game on Instagram, @thebasementgame, for more updates, including maps, new features, and more!",
-    summary: "Got out alive. Barely.",
+    summary: "Got out alive. Barely. #MadeIt",
     decision_id: 11
 )
 puts "Finished Seeding The Game"
@@ -232,6 +238,13 @@ Score.create!(
     player_id: 4,
     game_id: 4,
     points: 0
+)
+
+Score.create!(
+    id: 5,
+    player_id: 1,
+    game_id: 5,
+    points: 300
 )
 
 puts "Finished Seeding The Other Stuff"

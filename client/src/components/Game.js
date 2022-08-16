@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 
 function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache }){
     const { prompt }  = findDecision 
-    const { outcome } = findDecision 
-    const { result } = outcome
+    const { outcomes } = findDecision 
+    const { result } = outcomes
+
     /// handling Prompt
     function handlePrompt(){
         return (        
