@@ -3,20 +3,20 @@ puts "Starting Seeding"
 puts "Seeding The Game"
 Game.create!(
     id: 1,
-    decision_id: 11
+    outcomes_id: 11
 )
 
 Game.create!(
     id:2,
-    decision_id: 1
+    outcomes_id: 1
 )
 Game.create!(
     id:3,
-    decision_id: 5
+    outcomes_id: 5
 )
 Game.create!(
     id:4,
-    decision_id: 1
+    outcomes_id: 1
 )
 
 
