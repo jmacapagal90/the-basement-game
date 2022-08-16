@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 
-function Game({ findDecision, handleTrue, handleFalse, isCorrect, userAnswer, clearCache, turn }){
+function Game({ 
+        gameID,
+        findDecision, 
+        handleTrue, 
+        handleFalse, 
+        isCorrect, 
+        userAnswer, 
+        clearCache,
+     }){
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
-    
-    const gameObj = {
-
-    }
-
 
 
     /// handling Prompt

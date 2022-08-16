@@ -14,6 +14,7 @@ function App() {
   const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(null)
   const [ turn, setTurn ] = useState(1)
+  const [ gameID,setGameID] = useState(0)
   const isFirstRender = useRef(false)
 
   // login
@@ -64,8 +65,26 @@ function App() {
       body: JSON.stringify({
         outcomes_id: 1 
       }),
-    })  
+    }).then((r)=>r.json()).then((new_game)=>setGameID(new_game.id))  
   }
+
+  const gameObj = {
+    id: gameID,
+    outcomes_id: turn 
+    }
+console.log(gameObj)
+  
+function updateGame(){
+  console.log(gameObj)
+  fetch(`/games/${gameID}`,{
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({gameObj}),
+    }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
+}
+
 
   //handling answer Yes
   function handleTrue(){
@@ -93,6 +112,7 @@ function App() {
     setUserAnswer(null)
     setIsCorrect(null)
     setTurn(1)
+    updateGame()
   }
 
 
@@ -125,6 +145,7 @@ function App() {
           </Route>
           <Route exact path="/game">
             <Game 
+            gameID={gameID}
             turn={turn}
             findDecision={findDecision} 
             isCorrect={isCorrect} 

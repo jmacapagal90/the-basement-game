@@ -1,6 +1,6 @@
 # config/routes.rb
 Rails.application.routes.draw do
-  resources :games, only: [:index, :create, :show]
+  resources :games, only: [:index, :create, :update,:show]
   resources :scores
   resources :players, only: [:index, :show]
   resources :outcomes, only: [:index,:show]
