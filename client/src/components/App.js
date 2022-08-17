@@ -64,7 +64,6 @@ function App() {
       },
       body: JSON.stringify({
         player_id: user.id,    
-        game_id: gameID,
         points: 0
         }),
     })
@@ -73,7 +72,7 @@ function App() {
       if (response.ok){
         data.then((new_game)=>setGameID(new_game.id))  
       } else {
-        console.log(data.error)
+        console.log(data)
       }
   }
   
@@ -89,9 +88,6 @@ function updateGame(){
       user_id: user.id}),
     }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
 }
-  console.log("gameid:", gameID)
-  console.log("outcomes_id:", turn)
-  console.log("user_id:", user.id)
 
   //handling answer Yes
   function handleTrue(){

@@ -11,9 +11,9 @@ class ScoresController < ApplicationController
     end
 
     def create 
-        new_score = Score.create(score_params)
-        byebug
-        new_score.create_game!(id: new_score.game_id,outcomes_id: 1)
+        new_score = Score.create!(score_params)
+        new_score.create_game!(id: new_score.id, outcomes_id: 1)
+        new_score.update!(game_id: new_score.id)
         render json: new_score, status: :created 
     end
 
@@ -28,7 +28,7 @@ class ScoresController < ApplicationController
     end
 
     def score_params
-        params.permit(:id,:player_id,:game_id,:points)
+        params.permit(:id,:player_id,:points)
     end
 
 end
