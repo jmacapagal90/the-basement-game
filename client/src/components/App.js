@@ -16,6 +16,8 @@ function App() {
   const [ isCorrect, setIsCorrect ] = useState(null)
   const [ turn, setTurn ] = useState(1)
   const [ gameID,setGameID] = useState(0)
+  const [ scoreID, setScoreID] = useState(0)
+  const [ points, setPoints ] = useState(0)
   const isFirstRender = useRef(false)
 
   // login
@@ -64,34 +66,23 @@ function App() {
       },
       body: JSON.stringify({
         player_id: user.id,    
-        game_id: gameID,
         points: 0
         }),
     })
     
     const data = response.json();
       if (response.ok){
-        data.then((new_game)=>setGameID(new_game.id))  
+        data.then((scoreData)=>{
+          console.log(scoreData)
+          setGameID(scoreData.game_id)
+          setScoreID(scoreData.id)
+        })  
       } else {
-        console.log(data.error)
+        console.log(data)
       }
   }
-  
-function updateGame(){
-  fetch(`/games/${gameID}`,{
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({    
-      id: gameID,
-      outcomes_id: turn,
-      user_id: user.id}),
-    }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
-}
-  console.log("gameid:", gameID)
-  console.log("outcomes_id:", turn)
-  console.log("user_id:", user.id)
+
+
 
   //handling answer Yes
   function handleTrue(){
@@ -110,23 +101,48 @@ function updateGame(){
      if (userAnswer === findDecision.answer && findDecision){
       setIsCorrect(true)
       setTurn(()=>turn+1)
+      setPoints(()=> points + 100)
+      handleUpdate()
       } else if (userAnswer !== findDecision.answer && findDecision){
       setIsCorrect(false)
+      handleUpdate()
      }
   }
+
+  function handleUpdate(){
+    fetch(`/scores/${scoreID}`,{
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        points: points
+      })      
+    })
+
+    fetch(`/games/${gameID}`,{
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        outcomes_id: turn
+      })      
+    })
+  }
+
+
   //clears cache upon return home
   function clearCache(){
     setUserAnswer(null)
     setIsCorrect(null)
     setTurn(1)
-    updateGame()
+    setPoints(0)
+    handleUpdate()
   }
+
 
 
   return (
     <BrowserRouter>
       <div>
-        <NavBar user={user} setUser={setUser} />
+        <NavBar user={user} setUser={setUser} clearCache={clearCache}/>
       </div>
       <div className="App">
         <Switch>
@@ -163,6 +179,7 @@ function updateGame(){
             handleFalse={handleFalse} 
             userAnswer={userAnswer}
             clearCache={clearCache}
+            points={points}
             />
           </Route>
         </Switch>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Game({ 
         gameID,
@@ -8,10 +9,12 @@ function Game({
         isCorrect, 
         userAnswer, 
         clearCache,
+        points
      }){
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
+
 
 
     /// handling Prompt
@@ -51,6 +54,7 @@ function Game({
     return (
         <>
         {renderPage()}
+        <h2>Points: {points == 0 ? 0 : points}</h2>
         </>
     )
 }
