@@ -10,13 +10,14 @@ class GamesController < ApplicationController
         render json: @game, status: :ok
     end
 
-    def create 
-        @new_game = Game.create!(game_params)
-        render json: @new_game, status: :created
-    end
+    # def create 
+    #     new_game = Game.create!(game_params)
+    #     new_game.scores.create!(player_id: :user_id,points:0)
+    #     render json: @new_game, status: :created
+    # end
 
     def update
-        @game.update!(game_update_params_outcome)
+        @game.update!(game_params)
         render json: @game,status: :accepted
     end
 
@@ -27,10 +28,10 @@ class GamesController < ApplicationController
     end
 
     def game_params
-        params.permit(:outcomes_id)
+        params.permit(:id,:outcomes_id)
     end
 
-    def game_update_params_outcome
-        params.permit(:id,:outcomes_id)
+    def score_params
+        params.permit(:player_id,:points)
     end
 end

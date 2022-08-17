@@ -19,7 +19,6 @@ function App() {
   const isFirstRender = useRef(false)
 
   // login
-
   useEffect(() => {
     // auto-login
     fetch('/myaccount').then((r) => {
@@ -58,14 +57,16 @@ function App() {
 
   //POST Game & Score
   async function startGame(){
-   const response = await fetch('/games',{
+   const response = await fetch('/scores',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        outcomes_id: 1 
-      }),
+        player_id: user.id,    
+        game_id: gameID,
+        points: 0
+        }),
     })
     
     const data = response.json();
@@ -75,12 +76,6 @@ function App() {
         console.log(data.error)
       }
   }
-
-  const gameObj = {
-    id: gameID,
-    outcomes_id: turn 
-    }
-console.log(gameObj)
   
 function updateGame(){
   fetch(`/games/${gameID}`,{
@@ -88,10 +83,15 @@ function updateGame(){
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({gameObj}),
+    body: JSON.stringify({    
+      id: gameID,
+      outcomes_id: turn,
+      user_id: user.id}),
     }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
 }
-
+  console.log("gameid:", gameID)
+  console.log("outcomes_id:", turn)
+  console.log("user_id:", user.id)
 
   //handling answer Yes
   function handleTrue(){
