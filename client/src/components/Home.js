@@ -1,8 +1,7 @@
 import { useState, useEffect,useRef } from "react";
 import { Link } from "react-router-dom";
-import Login from './Login'
 
-function Home({ user, startGame }){
+function Home({ user,startGame }){
 
 
 
@@ -10,7 +9,7 @@ function Home({ user, startGame }){
         return (
             <>
                 <h1>Welcome To The Basement...</h1>
-                <Link to='/game' onClick={()=>startGame()}>Play</Link>
+                <Link to='/startgame' onClick={()=>startGame()}>Play</Link>
             </>
         )
     } else{

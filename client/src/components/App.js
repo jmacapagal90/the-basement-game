@@ -7,6 +7,7 @@ import Login from './Login';
 import Signup from './Signup';
 import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
+import GameLanding from "./GameLanding";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -55,9 +56,9 @@ function App() {
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
 
-  //POST Game
-  function startGame(){
-    fetch('/games',{
+  //POST Game & Score
+  async function startGame(){
+   const response = await fetch('/games',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +66,14 @@ function App() {
       body: JSON.stringify({
         outcomes_id: 1 
       }),
-    }).then((r)=>r.json()).then((new_game)=>setGameID(new_game.id))  
+    })
+    
+    const data = response.json();
+      if (response.ok){
+        data.then((new_game)=>setGameID(new_game.id))  
+      } else {
+        console.log(data.error)
+      }
   }
 
   const gameObj = {
@@ -75,7 +83,6 @@ function App() {
 console.log(gameObj)
   
 function updateGame(){
-  console.log(gameObj)
   fetch(`/games/${gameID}`,{
     method: 'PATCH',
     headers: {
@@ -142,6 +149,9 @@ function updateGame(){
           </Route>
           <Route exact path="/scores">
             <Scoreboard user={user} />
+          </Route>
+          <Route exact path="/startgame">
+            <GameLanding />
           </Route>
           <Route exact path="/game">
             <Game 

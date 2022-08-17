@@ -1,7 +1,7 @@
 class PlayerSerializer < ActiveModel::Serializer
-  attributes :id,:username, :scores_w_game
+  attributes :id,:username, :created_at,:updated_at,:scores_w_summary, 
 
-  def scores_w_game
+  def scores_w_summary
     self.object.scores.map do |score|
       {
         player_id: score.player_id,
@@ -14,4 +14,11 @@ class PlayerSerializer < ActiveModel::Serializer
     end
   end
 
+  def updated_at
+    object.updated_at.strftime("%m/%d/%Y @ %I:%M:%S%p")
+  end
+
+  def created_at
+    object.created_at.strftime("%m/%d/%Y @ %I:%M:%S%p")
+  end
 end

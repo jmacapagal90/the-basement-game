@@ -11,8 +11,8 @@ class GamesController < ApplicationController
     end
 
     def create 
-        new_game = Game.create!(game_create_params)
-        render json: new_game, status: :created
+        @new_game = Game.create!(game_params)
+        render json: @new_game, status: :created
     end
 
     def update
@@ -26,12 +26,8 @@ class GamesController < ApplicationController
         @game = Game.find(params[:id])
     end
 
-    def game_create_params
+    def game_params
         params.permit(:outcomes_id)
-    end
-
-    def game_update_params_id
-        params.permit(:id)
     end
 
     def game_update_params_outcome
