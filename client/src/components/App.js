@@ -46,17 +46,16 @@ function App() {
   useEffect(()=>{
     if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
       isFirstRender.current = true;
-    } else {
+    } else{
       checkAnswer()
     }
   },[userAnswer]) //use effect will run when userAnswer is changed by handleTrue or handleFalse
  
   //this is grabbing one decision for now
-  // if the answer is correct, i need to show the next decision by grabbing the decision with the prev_decision_id of the prev decision...
 
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
-
+  console.log("turn:",turn)
   //POST Game & Score
   async function startGame(){
    const response = await fetch('/scores',{
@@ -108,6 +107,8 @@ function App() {
       handleUpdate()
      }
   }
+
+  console.log("actual answer:", findDecision.answer)
 
   function handleUpdate(){
     fetch(`/scores/${scoreID}`,{
