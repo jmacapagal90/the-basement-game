@@ -7,6 +7,7 @@ import Login from './Login';
 import Signup from './Signup';
 import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
+import GameLanding from "./GameLanding";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -18,7 +19,6 @@ function App() {
   const isFirstRender = useRef(false)
 
   // login
-
   useEffect(() => {
     // auto-login
     fetch('/myaccount').then((r) => {
@@ -55,36 +55,43 @@ function App() {
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
 
-  //POST Game
-  function startGame(){
-    fetch('/games',{
+  //POST Game & Score
+  async function startGame(){
+   const response = await fetch('/scores',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        outcomes_id: 1 
-      }),
-    }).then((r)=>r.json()).then((new_game)=>setGameID(new_game.id))  
+        player_id: user.id,    
+        game_id: gameID,
+        points: 0
+        }),
+    })
+    
+    const data = response.json();
+      if (response.ok){
+        data.then((new_game)=>setGameID(new_game.id))  
+      } else {
+        console.log(data.error)
+      }
   }
-
-  const gameObj = {
-    id: gameID,
-    outcomes_id: turn 
-    }
-console.log(gameObj)
   
 function updateGame(){
-  console.log(gameObj)
   fetch(`/games/${gameID}`,{
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({gameObj}),
+    body: JSON.stringify({    
+      id: gameID,
+      outcomes_id: turn,
+      user_id: user.id}),
     }).then((r)=>r.json()).then((updated_game)=>console.log(updated_game))  
 }
-
+  console.log("gameid:", gameID)
+  console.log("outcomes_id:", turn)
+  console.log("user_id:", user.id)
 
   //handling answer Yes
   function handleTrue(){
@@ -142,6 +149,9 @@ function updateGame(){
           </Route>
           <Route exact path="/scores">
             <Scoreboard user={user} />
+          </Route>
+          <Route exact path="/startgame">
+            <GameLanding />
           </Route>
           <Route exact path="/game">
             <Game 

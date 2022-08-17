@@ -1,3 +1,10 @@
+Game.destroy_all
+
+Score.destroy_all
+
+Player.destroy_all
+
+
 puts "Starting Seeding"
 
 puts "Seeding The Game"
@@ -248,5 +255,7 @@ Score.create!(
 )
 
 puts "Finished Seeding The Other Stuff"
-
+ActiveRecord::Base.connection.reset_pk_sequence!('games')
+ActiveRecord::Base.connection.reset_pk_sequence!('scores')
+ActiveRecord::Base.connection.reset_pk_sequence!('players')
 puts "Seeding Finished"
