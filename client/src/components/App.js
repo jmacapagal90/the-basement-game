@@ -102,6 +102,7 @@ function App() {
       setIsCorrect(true)
       setTurn(()=>turn+1)
       setPoints(()=> points + 100)
+      handleUpdate()
       } else if (userAnswer !== findDecision.answer && findDecision){
       setIsCorrect(false)
       handleUpdate()
@@ -115,7 +116,7 @@ function App() {
       body: JSON.stringify({
         points: points
       })      
-    }).then((r)=>r.json()).then((data)=>console.log(data))
+    })
 
     fetch(`/games/${gameID}`,{
       method: 'PATCH',
@@ -123,7 +124,7 @@ function App() {
       body: JSON.stringify({
         outcomes_id: turn
       })      
-    }).then((r)=>r.json()).then((data)=>console.log(data))
+    })
   }
 
 
@@ -133,6 +134,7 @@ function App() {
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)
+    handleUpdate()
   }
 
 
