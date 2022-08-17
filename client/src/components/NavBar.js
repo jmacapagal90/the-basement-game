@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-function NavBar({ user, setUser }) {
+function NavBar({ user, setUser, clearCache }) {
   function handleLogoutClick() {
     fetch('/logout', { method: 'DELETE' }).then((r) => {
       if (r.ok) {
@@ -15,9 +15,9 @@ function NavBar({ user, setUser }) {
       <div>
         {user ? (
           <div>
-            <Link to='/' className="link">Home</Link>
+            <Link to='/' className="link" onClick={()=>clearCache()}>Home</Link>
             <Link to="/" className="link" onClick={handleLogoutClick}>Logout</Link>
-            <Link to="/scores" className="link">Scores</Link>
+            <Link to="/scores" className="link"onClick={()=>clearCache()}>Scores</Link>
           </div>
         ) : (
           <>
