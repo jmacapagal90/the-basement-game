@@ -18,6 +18,7 @@ function NavBar({ user, setUser, clearCache }) {
             <Link to='/' className="link" onClick={()=>clearCache()}>Home</Link>
             <Link to="/" className="link" onClick={handleLogoutClick}>Logout</Link>
             <Link to="/scores" className="link"onClick={()=>clearCache()}>Scores</Link>
+            <Link to="/myaccount" className="link"onClick={()=>clearCache()}>My Account</Link>
           </div>
         ) : (
           <>

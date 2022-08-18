@@ -8,6 +8,7 @@ import Signup from './Signup';
 import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
 import GameLanding from "./GameLanding";
+import AccountPage from "./AccountPage";
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -171,6 +172,13 @@ function App() {
           </Route>
           <Route exact path="/startgame">
             <GameLanding />
+          </Route>
+          <Route exact path="/myaccount">
+              {user ? (
+                  <AccountPage user={user} />
+                ) : (
+                  <Redirect to='/' />
+              )}
           </Route>
           <Route exact path="/game">
             <Game 

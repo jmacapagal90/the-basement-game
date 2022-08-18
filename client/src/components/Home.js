@@ -13,11 +13,10 @@ function Home({ user,startGame }){
             </>
         )
     } else{
-    return (
-        <>
-        <h1>Welcome To The Basement...</h1>
-
-        <Link to='/login'>Login to Play</Link>
+        return (
+            <>
+            <h1>Welcome To The Basement...</h1>
+            <Link to='/login'>Login to Play</Link>
     </>
      )
     }
