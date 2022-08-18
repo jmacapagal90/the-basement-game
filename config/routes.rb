@@ -2,7 +2,7 @@
 Rails.application.routes.draw do
   resources :games, only: [:index, :create, :update,:show]
   resources :scores
-  resources :players, only: [:index, :show]
+  resources :players, only: [:index, :show,:destroy]
   resources :outcomes, only: [:index,:show]
   resources :decisions, only: [:index,:show]
 

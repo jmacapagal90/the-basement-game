@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import Scorecard from "./Scorecard";
+
 
 function Scoreboard(){
     const [ scores, setScores ] = useState([])
@@ -13,12 +15,16 @@ function Scoreboard(){
     }, []);
 
    
-
+    console.log(scores)
     const renderScores = () => scores.map((score)=> (
         <>
-          <h2 key={score.id}>@{score.username} - {score.points}pts</h2>
-          <h2>{score.game.game_w_outcome}</h2>
-          <p>{score.updated_at}</p>
+          <Scorecard 
+            key={score.id}
+            username={score.username}
+            points={score.points}
+            summary={score.game.game_w_outcome}
+            updated_at={score.updated_at}
+          />
         </>
     ))
 

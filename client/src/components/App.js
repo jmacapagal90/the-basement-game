@@ -8,18 +8,19 @@ import Signup from './Signup';
 import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
 import GameLanding from "./GameLanding";
+import AccountPage from "./AccountPage";
 
 function App() {
   const [ user, setUser ] = useState(null)
   const [ decisions, setDecisions ] = useState("");
-  const [ userAnswer, setUserAnswer ] = useState("first")
+  const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(false)
   const [ turn, setTurn ] = useState(1)
   const [ gameID,setGameID] = useState(0)
   const [ scoreID, setScoreID] = useState(0)
   const [ points, setPoints ] = useState(0)
   const isFirstRender = useRef(false)
-  console.log("isFirstRender:",isFirstRender.current)
+  
   // login
   useEffect(() => {
     // auto-login
@@ -47,10 +48,6 @@ function App() {
       checkAnswer()
   },[userAnswer]) 
  
-  useEffect(()=>{
-    console.log("userAnswer:", userAnswer)
-  }, [userAnswer])
-
   //this is grabbing one decision for now
 
   //need to find where prev_decision_id = current_id - 1?
@@ -72,12 +69,11 @@ function App() {
     const data = response.json();
       if (response.ok){
         data.then((scoreData)=>{
-          console.log(scoreData)
           setGameID(scoreData.game_id)
           setScoreID(scoreData.id)
         })  
       } else {
-        console.log(data)
+        console.log(data.errors)
       }
   }
 
@@ -93,25 +89,23 @@ function App() {
 
   // checking if answer is good
   function checkAnswer(){
-    console.log("userAnswer:",userAnswer)
-    if (userAnswer === "first"){
-      return  
-    }
-    if (userAnswer === findDecision.answer){
-      console.log("turn:",turn)
+    
+    if (userAnswer!== null && userAnswer === findDecision.answer){
+      
       setIsCorrect(true)
       setTurn(()=> turn + 1)
       setPoints(()=> points + 100)
       handleUpdate()
-      setUserAnswer("first")
-    } else if (userAnswer !== findDecision.answer){
+      setUserAnswer(null)
+    } else if (userAnswer!== null && userAnswer !== findDecision.answer){
       setIsCorrect(false)
       handleUpdate()
+    } else {
+        return 
     }
     
   }
 
-  console.log("actual answer:", findDecision.answer)
 
   function handleUpdate(){
     fetch(`/scores/${scoreID}`,{
@@ -134,7 +128,7 @@ function App() {
 
   //clears cache upon return home
   function clearCache(){
-    setUserAnswer("first")
+    setUserAnswer(null)
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)
@@ -172,6 +166,13 @@ function App() {
           </Route>
           <Route exact path="/startgame">
             <GameLanding />
+          </Route>
+          <Route exact path="/myaccount">
+              {user ? (
+                  <AccountPage user={user} />
+                ) : (
+                  <Redirect to='/' />
+              )}
           </Route>
           <Route exact path="/game">
             <Game 

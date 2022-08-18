@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
     before_action :authorize, only: [:show]
+    before_action :set_player, only: [:show,:destroy]
     wrap_parameters format: []
     def create 
         player = Player.create!(player_params)
@@ -16,10 +17,19 @@ class PlayersController < ApplicationController
     end
 
     def show 
-        player = Player.find_by(id: session[:user_id])
-        render json: player, status: :ok
+        render json: @player, status: :ok
     end
+
+    def destroy
+        @player.destroy
+        head :no_content
+    end
+
     private
+
+    def set_player
+        @player = Player.find_by(id: session[:user_id])
+    end
 
     def authorize
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
