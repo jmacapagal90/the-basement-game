@@ -1,14 +1,16 @@
-Game.destroy_all
-Score.destroy_all
-Player.destroy_all
-Decision.destroy_all
-Outcome.destroy_all
-ActiveRecord::Base.connection.reset_pk_sequence!('games')
-ActiveRecord::Base.connection.reset_pk_sequence!('scores')
-ActiveRecord::Base.connection.reset_pk_sequence!('players')
-ActiveRecord::Base.connection.reset_pk_sequence!('decisions')
-ActiveRecord::Base.connection.reset_pk_sequence!('outcomes')
+puts "cleaning up"
 
+Game.destroy_all
+
+Score.destroy_all
+
+Player.destroy_all
+
+Decision.destroy_all
+
+Outcome.destroy_all
+
+puts "end cleanup"
 
 puts "Starting Seeding"
 
@@ -69,14 +71,14 @@ Outcome.create!(
 
 Decision.create!(
     id:3,
-    prompt: "You open the toolbox, and find a walkie-talkie. Do you use it?",
-    answer: 0,
+    prompt: "You open the toolbox, and find a walkie talkie. Do you use it?",
+    answer: 1,
     prev_decision_id: 2
 )
 
 Outcome.create!(
     id:3,
-    result: "The walkie-talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded... You are dead.",
+    result: "The walkie talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded... You are dead.",
     summary: "Was the Bomb. #BombAF",
     decision_id: 3
 )
@@ -260,4 +262,11 @@ Score.create!(
 )
 
 puts "Finished Seeding The Other Stuff"
+
+Game.reset_pk_sequence
+Score.reset_pk_sequence
+Player.reset_pk_sequence
+Decision.reset_pk_sequence
+Outcome.reset_pk_sequence
+
 puts "Seeding Finished"
