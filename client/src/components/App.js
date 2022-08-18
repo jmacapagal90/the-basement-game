@@ -12,7 +12,7 @@ import GameLanding from "./GameLanding";
 function App() {
   const [ user, setUser ] = useState(null)
   const [ decisions, setDecisions ] = useState("");
-  const [ userAnswer, setUserAnswer ] = useState("first")
+  const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(false)
   const [ turn, setTurn ] = useState(1)
   const [ gameID,setGameID] = useState(0)
@@ -94,19 +94,18 @@ function App() {
   // checking if answer is good
   function checkAnswer(){
     console.log("userAnswer:",userAnswer)
-    if (userAnswer === "first"){
-      return  
-    }
-    if (userAnswer === findDecision.answer){
+    if (userAnswer!== null && userAnswer === findDecision.answer){
       console.log("turn:",turn)
       setIsCorrect(true)
       setTurn(()=> turn + 1)
       setPoints(()=> points + 100)
       handleUpdate()
-      setUserAnswer("first")
-    } else if (userAnswer !== findDecision.answer){
+      setUserAnswer(null)
+    } else if (userAnswer!== null && userAnswer !== findDecision.answer){
       setIsCorrect(false)
       handleUpdate()
+    } else {
+        return 
     }
     
   }
@@ -134,7 +133,7 @@ function App() {
 
   //clears cache upon return home
   function clearCache(){
-    setUserAnswer("first")
+    setUserAnswer(null)
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)

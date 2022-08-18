@@ -44,7 +44,7 @@ function Game({
             return (        
                 <>{handlePrompt()}</>
             )
-        } else if (userAnswer != "first" && isCorrect === false){
+        } else if (userAnswer != null && isCorrect === false){
                 return (       
                 <>{handleDeath()}</>
                 )
