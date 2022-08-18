@@ -1,25 +1,38 @@
-import { useState, useEffect,useRef } from "react";
-import { Link } from "react-router-dom";
+import { Header,Container } from 'semantic-ui-react'
+import { NavLink } from "react-router-dom";
 
 function Home({ user,startGame }){
 
 
-
+    function renderHome(){
     if (user) {
         return (
-            <>
-                <h1>Welcome To The Basement...</h1>
-                <Link to='/startgame' onClick={()=>startGame()}>Play</Link>
-            </>
+            <div class="ui inverted segment">
+                <h1 class="ui huge header">Welcome To The Basement...</h1>
+                <button class="ui inverted red basic button">
+                    <NavLink to='/startgame' onClick={()=>startGame()} activeStyle={{
+                        color: "red",
+                        fontWeight:"bold"
+                        
+                        }}>Play</NavLink>
+                </button>
+            </div>
         )
-    } else{
+    } else {
         return (
-            <>
-            <h1>Welcome To The Basement...</h1>
-            <Link to='/login'>Login to Play</Link>
-    </>
+            <div class="ui inverted segment">
+                <h1 class="ui huge header">Welcome To The Basement...</h1>
+                <button class="ui inverted red basic button">
+                    <NavLink to='/login' activeStyle={{color: "red"}}>Login to Play</NavLink>
+                </button>
+            </div>
      )
-    }
+    }}
+    return (
+        <Container textAlign="center">
+            {renderHome()}
+        </Container>
+    )
 }
 
 export default Home;

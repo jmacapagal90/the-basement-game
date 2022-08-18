@@ -1,13 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Header,Container } from 'semantic-ui-react'
 
 function GameLanding(){
 
     return (
-        <>
-        <h3>The game is simple. You answer correctly- you live. You don't- you die... Ready?</h3>
-        <Link to='/game' >Start</Link>
-        </>
+        <Container textAlign="center">
+            <div class="ui inverted segment">
+            <h1 class="ui huge header">"The game is simple. Answer correctly: you live... Answer incorrectly: you don't... Ready?"</h1>
+            <button class="ui inverted red basic button">
+                <NavLink to='/game' activeStyle={{color: "red"}}>Start</NavLink>
+                </button>
+        </div>
+        </Container>
     )
 }
 

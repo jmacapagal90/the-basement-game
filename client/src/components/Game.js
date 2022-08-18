@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { Header,Container,Item } from 'semantic-ui-react'
 
 function Game({ 
         findDecision, 
@@ -18,21 +18,26 @@ function Game({
     /// handling Prompt
     function handlePrompt(){
         return (        
-            <>
-                <h2>{prompt}</h2>
-                <button onClick={()=>handleTrue()}>Yes</button>
-                <button onClick={()=>handleFalse()}>No</button>
-                <Link to="/" onClick={()=>clearCache()}>Return Home</Link> 
-            </>
+            <div class="ui inverted segment">
+                <h1 class="ui header">{prompt}</h1>
+                <h4 class="ui horizontal inverted divider">Choose...</h4>     
+                <div class="ui buttons">         
+                    <button class="positive ui button" onClick={()=>handleTrue()}>Yes</button>
+                    <div class="or"></div>
+                    <button class="negative ui button" onClick={()=>handleFalse()}>No</button>
+                </div>
+            </div>
             )
     }
     // showing Death
     function handleDeath(){
         return (
-            <>
-                <h2>{result}</h2>
-                <Link to="/" onClick={()=>clearCache()}>Return Home</Link>
-            </>
+            <div class="ui inverted segment">
+                <h1 class="ui header">{result}</h1>
+                    <button class="ui inverted red basic button">
+                        <NavLink to="/" onClick={()=>clearCache()} activeStyle={{color: "red"}}>Return Home</NavLink>
+                    </button>
+            </div>
             )
     }
     //conditionally rendering Page depending on answers
@@ -55,11 +60,12 @@ function Game({
 
 
     return (
-        <>
-        <h2>Turn: {turn}</h2>
+        <Container textAlign="center">
+        <div class="ui inverted segment">
         {renderPage()}
-        <h2>Points: {points == 0 ? 0 : points}</h2>
-        </>
+        <h4 textAlign="center">Points: {points == 0 ? 0 : points}</h4>
+        </div>
+        </Container>
     )
 }
 
