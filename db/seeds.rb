@@ -70,7 +70,7 @@ Outcome.create!(
 Decision.create!(
     id:3,
     prompt: "You open the toolbox, and find a walkie-talkie. Do you use it?",
-    answer: 1,
+    answer: 0,
     prev_decision_id: 2
 )
 

@@ -46,11 +46,12 @@ function App() {
   useEffect(()=>{
     if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
       isFirstRender.current = true;
-    } else{
+    } else {
       checkAnswer()
-    }
+    } 
   },[userAnswer]) //use effect will run when userAnswer is changed by handleTrue or handleFalse
  
+
   //this is grabbing one decision for now
 
   //need to find where prev_decision_id = current_id - 1?

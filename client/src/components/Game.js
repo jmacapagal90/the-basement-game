@@ -17,7 +17,7 @@ function Game({
     
     console.log("userAnswer:", userAnswer)
     console.log("isCorrect",isCorrect)
-
+        
     /// handling Prompt
     function handlePrompt(){
         return (        

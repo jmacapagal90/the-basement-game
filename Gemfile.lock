@@ -52,6 +52,7 @@ GEM
     activerecord (6.1.6.1)
       activemodel (= 6.1.6.1)
       activesupport (= 6.1.6.1)
+    activerecord-reset-pk-sequence (0.2.1)
     activestorage (6.1.6.1)
       actionpack (= 6.1.6.1)
       activejob (= 6.1.6.1)
@@ -136,6 +137,7 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    seed (1.1.3)
     spring (4.0.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -158,6 +160,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.12)
+  activerecord-reset-pk-sequence
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
@@ -165,6 +168,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  seed
   spring
   tzinfo-data
 
