@@ -16,8 +16,6 @@ function SignUp({ setUser }) {
       password_confirmation: passwordConfirmation,
       email: email
     }
-
-    console.log(formData)
     const response = await fetch('/signup', {
       method: 'POST',
       headers: {

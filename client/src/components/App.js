@@ -20,7 +20,7 @@ function App() {
   const [ scoreID, setScoreID] = useState(0)
   const [ points, setPoints ] = useState(0)
   const isFirstRender = useRef(false)
-  console.log("isFirstRender:",isFirstRender.current)
+  
   // login
   useEffect(() => {
     // auto-login
@@ -48,10 +48,6 @@ function App() {
       checkAnswer()
   },[userAnswer]) 
  
-  useEffect(()=>{
-    console.log("userAnswer:", userAnswer)
-  }, [userAnswer])
-
   //this is grabbing one decision for now
 
   //need to find where prev_decision_id = current_id - 1?
@@ -73,12 +69,11 @@ function App() {
     const data = response.json();
       if (response.ok){
         data.then((scoreData)=>{
-          console.log(scoreData)
           setGameID(scoreData.game_id)
           setScoreID(scoreData.id)
         })  
       } else {
-        console.log(data)
+        console.log(data.errors)
       }
   }
 
@@ -94,9 +89,9 @@ function App() {
 
   // checking if answer is good
   function checkAnswer(){
-    console.log("userAnswer:",userAnswer)
+    
     if (userAnswer!== null && userAnswer === findDecision.answer){
-      console.log("turn:",turn)
+      
       setIsCorrect(true)
       setTurn(()=> turn + 1)
       setPoints(()=> points + 100)
@@ -111,7 +106,6 @@ function App() {
     
   }
 
-  console.log("actual answer:", findDecision.answer)
 
   function handleUpdate(){
     fetch(`/scores/${scoreID}`,{
