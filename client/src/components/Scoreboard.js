@@ -25,7 +25,7 @@ function Scoreboard(){
     return (
         <>
         <h1>Scores</h1>
-        <>{renderScores()}</>
+        <>{renderScores() ? renderScores() : <h2>Loading...</h2>}</>
         </>
     )
 }

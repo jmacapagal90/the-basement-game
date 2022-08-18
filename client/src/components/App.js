@@ -12,14 +12,14 @@ import GameLanding from "./GameLanding";
 function App() {
   const [ user, setUser ] = useState(null)
   const [ decisions, setDecisions ] = useState("");
-  const [ userAnswer, setUserAnswer ] = useState(null)
-  const [ isCorrect, setIsCorrect ] = useState(null)
+  const [ userAnswer, setUserAnswer ] = useState("first")
+  const [ isCorrect, setIsCorrect ] = useState(false)
   const [ turn, setTurn ] = useState(1)
   const [ gameID,setGameID] = useState(0)
   const [ scoreID, setScoreID] = useState(0)
   const [ points, setPoints ] = useState(0)
   const isFirstRender = useRef(false)
-
+  console.log("isFirstRender:",isFirstRender.current)
   // login
   useEffect(() => {
     // auto-login
@@ -44,19 +44,18 @@ function App() {
   
   //this UseEffect is running on first render
   useEffect(()=>{
-    if (isFirstRender.current){ // check if this is the first render, if true, then set isFirstRender to true
-      isFirstRender.current = true;
-    } else {
       checkAnswer()
-    } 
-  },[userAnswer]) //use effect will run when userAnswer is changed by handleTrue or handleFalse
+  },[userAnswer]) 
  
+  useEffect(()=>{
+    console.log("userAnswer:", userAnswer)
+  }, [userAnswer])
 
   //this is grabbing one decision for now
 
   //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
-  console.log("turn:",turn)
+  
   //POST Game & Score
   async function startGame(){
    const response = await fetch('/scores',{
@@ -82,31 +81,34 @@ function App() {
       }
   }
 
-
-
-  //handling answer Yes
   function handleTrue(){
-    setUserAnswer(true) 
-    checkAnswer()
+    setUserAnswer(true)
   }
 
-  //handling answer No
   function handleFalse(){
     setUserAnswer(false)
-    checkAnswer()
   }
+
+
 
   // checking if answer is good
   function checkAnswer(){
-     if (userAnswer === findDecision.answer && findDecision){
+    console.log("userAnswer:",userAnswer)
+    if (userAnswer === "first"){
+      return  
+    }
+    if (userAnswer === findDecision.answer){
+      console.log("turn:",turn)
       setIsCorrect(true)
-      setTurn(()=>turn+1)
+      setTurn(()=> turn + 1)
       setPoints(()=> points + 100)
       handleUpdate()
-      } else if (userAnswer !== findDecision.answer && findDecision){
+      setUserAnswer("first")
+    } else if (userAnswer !== findDecision.answer){
       setIsCorrect(false)
       handleUpdate()
-     }
+    }
+    
   }
 
   console.log("actual answer:", findDecision.answer)
@@ -132,7 +134,7 @@ function App() {
 
   //clears cache upon return home
   function clearCache(){
-    setUserAnswer(null)
+    setUserAnswer("first")
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)
@@ -177,11 +179,12 @@ function App() {
             turn={turn}
             findDecision={findDecision} 
             isCorrect={isCorrect} 
-            handleTrue={handleTrue} 
-            handleFalse={handleFalse} 
             userAnswer={userAnswer}
+            setUserAnswer={setUserAnswer}
             clearCache={clearCache}
             points={points}
+            handleTrue={handleTrue}
+            handleFalse={handleFalse}
             />
           </Route>
         </Switch>

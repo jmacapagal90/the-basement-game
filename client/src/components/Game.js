@@ -2,20 +2,20 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 function Game({ 
-        gameID,
         findDecision, 
-        handleTrue, 
-        handleFalse, 
+        handleTrue,
+        handleFalse,
         isCorrect, 
         userAnswer, 
         clearCache,
-        points
+        points,
+        turn
      }){
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
     
-    console.log("userAnswer:", userAnswer)
+    
     console.log("isCorrect",isCorrect)
         
     /// handling Prompt
@@ -40,20 +40,26 @@ function Game({
     }
     //conditionally rendering Page depending on answers
     const renderPage = () => {
-        if (userAnswer === null ||  isCorrect === true){
+        if (userAnswer != null && isCorrect === true){
             return (        
                 <>{handlePrompt()}</>
             )
-        } else if (userAnswer !== null && isCorrect === false){
-                return (        
+        } else if (userAnswer != "first" && isCorrect === false){
+                return (       
                 <>{handleDeath()}</>
-        )
+                )
+        } else {
+            return (        
+                <>{handlePrompt()}</>
+            )
+        }
      }
-    }
+    
 
 
     return (
         <>
+        <h2>Turn: {turn}</h2>
         {renderPage()}
         <h2>Points: {points == 0 ? 0 : points}</h2>
         </>
