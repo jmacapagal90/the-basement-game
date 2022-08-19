@@ -161,20 +161,20 @@ function App() {
           <Route exact path="/">
             <Home user={user} startGame={startGame}/>
           </Route>
-          <Route exact path="/scores">
+          <Route exact path="/scoreboard">
             <Scoreboard user={user} />
           </Route>
           <Route exact path="/startgame">
             <GameLanding />
           </Route>
-          <Route exact path="/myaccount">
+          <Route exact path="/account">
               {user ? (
                   <AccountPage user={user} />
                 ) : (
                   <Redirect to='/' />
               )}
           </Route>
-          <Route exact path="/game">
+          <Route exact path="/playgame">
             <Game 
             gameID={gameID}
             turn={turn}

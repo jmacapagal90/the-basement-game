@@ -6,7 +6,7 @@ function SignUp({ setUser }) {
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [email, setEmail] = useState('');
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState([])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -29,10 +29,10 @@ function SignUp({ setUser }) {
             data.then((data) => setUser(data));
             <Redirect to='/'/>;
         } else {
-            setErrors(data.error)
+            data.then((err) => setErrors(err.errors))
         }
     }
-
+    
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -73,8 +73,9 @@ function SignUp({ setUser }) {
         <p>
         Already a user? <Link to='/login'>Sign In</Link>
       </p>
-      {errors && errors.length > 0 ? (
-        <p style={{ color: "red" }}>Please Fill Out All Required Fields</p>
+      {errors && errors.length > 0 ? (errors.map((error)=>{return(
+        <p style={{ color: "red" }}>{error}</p>
+        )})
       ) : <></>}
       </form>
     </div>

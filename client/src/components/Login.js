@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState('')
+  const [error, setError] = useState([])
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +24,7 @@ function Login({ setUser }) {
         data.then((data) => setUser(data));
         <Redirect to='/' />;
       } else {
-        setErrors(data.error)
+        data.then((err) => setError(err.error))
       }
     }
   return (
@@ -56,9 +56,8 @@ function Login({ setUser }) {
       <p>
         Not a user yet? <Link to='/signup'>Sign Up</Link>
       </p>
-      {errors && errors.length > 0 ? (
-        <p style={{ color: "red" }}>{errors}</p>
-      ) : <></>}
+      <p style={{ color: "red" }}>{error}</p>
+      
 
     </div>
   );
