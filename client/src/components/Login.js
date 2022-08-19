@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
+import { Container } from 'semantic-ui-react'
 
 function Login({ setUser }) {
   const [username, setUsername] = useState('');
@@ -27,39 +28,41 @@ function Login({ setUser }) {
         data.then((err) => setError(err.error))
       }
     }
+
+    
   return (
-    <div class="game-info">
-      <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label htmlFor='username'>Username</label>
-        <input
-        class="game-info"
-          type='text'
-          id='username'
-          autoComplete='off'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br></br>
-        <label htmlFor='password'>Password</label>
-        <input
-        class="game-info"
-          type='password'
-          id='password'
-          autoComplete='current-password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br></br>
-        <button class="game-info"type='submit'>Login</button>
+    <Container textAlign='center'>
+    <div class="ui inverted segment">
+      <h1>Login</h1>
+      <form class="ui inverted form" onSubmit={(e)=>handleSubmit(e)}>
+          <div class="two fields">
+            <div class="field">
+                  <label for='username'>Username</label>
+                  <input
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+            </div>
+            <div class="field">
+                <label for='password'>Password</label>
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+          </div>
+      <button class="ui inverted red basic button" type='submit'>Login</button>
       </form>
-      <p>
-        Not a user yet? <Link to='/signup'>Sign Up</Link>
-      </p>
+    
+      
+      <h3>Wanna Play?</h3> 
+        <button class="ui inverted red basic button"><NavLink to='/playersignup' activeStyle={{color: "red"}}>Sign Up</NavLink></button>
+      
       <p style={{ color: "red" }}>{error}</p>
       
 
     </div>
+    </Container>
   );
 }
 

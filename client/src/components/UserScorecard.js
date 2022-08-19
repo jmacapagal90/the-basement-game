@@ -1,14 +1,18 @@
 import React from "react";
-import { Card } from 'semantic-ui-react'
 
-function UserScorecard({points,summary,updated_at}){
+
+function UserScorecard({username,points,summary,updated_at}){
     
     return (
-        <Card>
-            <Card.Header>{summary}</Card.Header> 
-            <Card.Description>{points}</Card.Description> 
-            <Card.Description>{updated_at}</Card.Description> 
-        </Card>
+        <div class="ui fluid card">
+            <div class="content">
+                <div class="header">@{username}</div> 
+                <div class="header">{summary}</div> 
+                <div class="description">Points: {points}</div> 
+                <div class="description">{updated_at}</div>
+                <div class="description">Sponsored by TwitchBlade</div> 
+            </div>
+        </div>
     )
 }
 

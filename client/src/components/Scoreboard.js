@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Scorecard from "./Scorecard";
-
+import UserScorecard from "./UserScorecard";
+import { Container } from 'semantic-ui-react'
 
 function Scoreboard(){
     const [ scores, setScores ] = useState([])
@@ -17,22 +17,25 @@ function Scoreboard(){
    
     console.log(scores)
     const renderScores = () => scores.map((score)=> (
-        <>
-          <Scorecard 
+      <div class="ui inverted cards">
+          <UserScorecard 
             key={score.id}
             username={score.username}
             points={score.points}
             summary={score.game.game_w_outcome}
             updated_at={score.updated_at}
           />
-        </>
+        </div>
     ))
 
     return (
-        <>
-        <h1>Scores</h1>
+      <Container textAlign="center">
+      <div class="ui inverted segment">
+        <h1><span style={{textDecoration: 'line-through'}}>Deathboard</span></h1>
+        <h1>Scoreboard</h1>
         <>{renderScores() ? renderScores() : <h2>Loading...</h2>}</>
-        </>
+      </div>
+      </Container>
     )
 }
 
