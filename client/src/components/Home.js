@@ -1,5 +1,6 @@
 import { Header,Container } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
+import Scoreboard from "./Scoreboard";
 
 function Home({ user,startGame }){
 
@@ -16,6 +17,8 @@ function Home({ user,startGame }){
                         
                         }}>Play</NavLink>
                 </button>
+                <h1>See Our Latest Losers...</h1>
+                <Scoreboard />
             </div>
         )
     } else {
