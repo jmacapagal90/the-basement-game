@@ -3,7 +3,8 @@ class ScoresController < ApplicationController
     before_action :set_score, only: [:show,:update]
 
     def index 
-        render json: Score.all, status: :ok
+        scores = Score.all.order(updated_at: :desc)
+        render json: scores, status: :ok
     end
 
     def create 
