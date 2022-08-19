@@ -23,7 +23,7 @@ function Home({ user,startGame }){
             <div class="ui inverted segment">
                 <h1 class="ui huge header">Welcome To The Basement...</h1>
                 <button class="ui inverted red basic button">
-                    <NavLink to='/login' activeStyle={{color: "red"}}>Login to Play</NavLink>
+                    <NavLink to='/playerlogin' activeStyle={{color: "red"}}>Login to Play</NavLink>
                 </button>
             </div>
      )

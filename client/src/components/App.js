@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
 import GameLanding from "./GameLanding";
 import AccountPage from "./AccountPage";
+import { Container } from 'semantic-ui-react'
 
 function App() {
   const [ user, setUser ] = useState(null)
@@ -139,19 +140,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <Container textAlign="center">
         <NavBar user={user} setUser={setUser} clearCache={clearCache}/>
-      </div>
-      <div className="App">
+      </Container>
+      <Container textAlign="center">
         <Switch>
-            <Route path='/login'>
+            <Route path='/playerlogin'>
                 {user ? (
                   <Redirect to='/' />
                 ) : (
                   <Login setUser={setUser} />
                 )}
               </Route>
-          <Route exact path="/signup">
+          <Route exact path="/playersignup">
               {user ? (
                   <Redirect to='/' />
                 ) : (
@@ -189,7 +190,7 @@ function App() {
             />
           </Route>
         </Switch>
-      </div>
+      </Container>
     </BrowserRouter>
   );
 }

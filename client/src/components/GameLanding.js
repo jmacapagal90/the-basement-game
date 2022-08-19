@@ -9,7 +9,7 @@ function GameLanding(){
             <div class="ui inverted segment">
             <h1 class="ui huge header">"The game is simple. Answer correctly: you live... Answer incorrectly: you don't... Ready?"</h1>
             <button class="ui inverted red basic button">
-                <NavLink to='/game' activeStyle={{color: "red"}}>Start</NavLink>
+                <NavLink to='/playgame' activeStyle={{color: "red"}}>Start</NavLink>
                 </button>
         </div>
         </Container>

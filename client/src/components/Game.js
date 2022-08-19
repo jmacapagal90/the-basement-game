@@ -14,7 +14,7 @@ function Game({
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
-        
+    
     /// handling Prompt
     function handlePrompt(){
         return (        
