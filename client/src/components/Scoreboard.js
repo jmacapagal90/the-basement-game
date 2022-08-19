@@ -14,8 +14,7 @@ function Scoreboard(){
         fetchScores().catch(console.error)
     }, []);
 
-   
-    console.log(scores)
+  
     const renderScores = () => scores.map((score)=> (
       <div class="ui inverted cards">
           <UserScorecard 
@@ -31,8 +30,7 @@ function Scoreboard(){
     return (
       <Container textAlign="center">
       <div class="ui inverted segment">
-        <h1><span style={{textDecoration: 'line-through'}}>Deathboard</span></h1>
-        <h1>Scoreboard</h1>
+        <h1><span style={{textDecoration: 'line-through'}}>Death</span>Scoreboard</h1>
         <>{renderScores() ? renderScores() : <h2>Loading...</h2>}</>
       </div>
       </Container>
