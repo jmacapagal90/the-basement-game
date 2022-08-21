@@ -1,31 +1,49 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
+import { FiMenu } from "react-icons/fi";
+import { IconContext } from "react-icons";
 
-function NavBar({ user, setUser, clearCache }) {
-  function handleLogoutClick() {
+
+function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen }) {
+
+  function handleClick(){
+    clearCache()
+    setNavbarOpen(false)
+  }
+
+  function handleLogout(){
     fetch('/logout', { method: 'DELETE' }).then((r) => {
       if (r.ok) {
         setUser(null);
       }
     });
+    setNavbarOpen(false)
   }
 
   return (
-    <header className='header'>
-      <div>
-        {user ? (
-          <div>
-            <Link to='/' className="link" onClick={()=>clearCache()}>Home</Link>
-            <Link to="/" className="link" onClick={handleLogoutClick}>Logout</Link>
-            <Link to="/scoreboard" className="link"onClick={()=>clearCache()}>Scoreboard</Link>
-            <Link to="/account" className="link"onClick={()=>clearCache()}>My Account</Link>
-          </div>
+    <nav className='navBar'>
+      <button onClick={()=>setNavbarOpen(!navbarOpen)} >{navbarOpen ? (
+          <IconContext.Provider value={{ className: 'react-icons' }}><AiOutlineClose/></IconContext.Provider>
         ) : (
-          <>
-          </>
+          <IconContext.Provider value={{ className: 'react-icons' }}><FiMenu/></IconContext.Provider>
         )}
-      </div>
-    </header>
+      </button>
+        {user ? (
+          <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+            <NavLink to='/' className="nav-link" onClick={()=>handleClick()}>Home</NavLink>
+            <NavLink to="/" className="nav-link" onClick={()=>handleLogout()}>Logout</NavLink>
+            <NavLink to="/scoreboard" className="nav-link"onClick={()=>handleClick()}>Scoreboard</NavLink>
+            <NavLink to="/account" className="nav-link"onClick={()=>handleClick()}>My Account</NavLink>
+          </ul>
+        ) : (
+          <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+            <NavLink to='/' className="nav-link" onClick={()=>handleClick()}>Home</NavLink>
+            <NavLink to="/scoreboard" className="nav-link"onClick={()=>handleClick()}>Scoreboard</NavLink>
+        </ul>
+        )}
+      
+    </nav>
   );
 }
 

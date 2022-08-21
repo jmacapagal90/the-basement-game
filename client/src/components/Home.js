@@ -9,15 +9,12 @@ function Home({ user,startGame }){
     if (user) {
         return (
             <div class="ui inverted segment">
+                <br></br>
+                <br></br>
                 <h1 class="ui huge header">Welcome To The Basement...</h1>
                 <button class="ui inverted red basic button">
-                    <NavLink to='/startgame' onClick={()=>startGame()} activeStyle={{
-                        color: "red",
-                        fontWeight:"bold"
-                        
-                        }}>Play</NavLink>
+                    <NavLink to='/startgame' onClick={()=>startGame()}>Play</NavLink>
                 </button>
-                <h1>See Our Latest Losers...</h1>
                 <Scoreboard />
             </div>
         )
@@ -26,7 +23,7 @@ function Home({ user,startGame }){
             <div class="ui inverted segment">
                 <h1 class="ui huge header">Welcome To The Basement...</h1>
                 <button class="ui inverted red basic button">
-                    <NavLink to='/playerlogin' activeStyle={{color: "red"}}>Login to Play</NavLink>
+                    <NavLink to='/playerlogin'>Login to Play</NavLink>
                 </button>
             </div>
      )

@@ -19,9 +19,11 @@ function Game({
     function handlePrompt(){
         return (        
             <div class="ui inverted segment">
-                <h1 class="ui header">{prompt}</h1>
+                <br></br>
+                <br></br>
+                <h2 class="ui header" id="prompt">{prompt}</h2>
                 <h4 class="ui horizontal inverted divider">Choose...</h4>     
-                <div class="ui buttons">         
+                <div class="ui fluid buttons">         
                     <button class="positive ui button" onClick={()=>handleTrue()}>Yes</button>
                     <div class="or"></div>
                     <button class="negative ui button" onClick={()=>handleFalse()}>No</button>
@@ -33,7 +35,9 @@ function Game({
     function handleDeath(){
         return (
             <div class="ui inverted segment">
-                <h1 class="ui header">{result}</h1>
+                                <br></br>
+                <br></br>
+                <h1 class="ui header" id="death">{result}</h1>
                     <button class="ui inverted red basic button">
                         <NavLink to="/" onClick={()=>clearCache()} activeStyle={{color: "red"}}>Return Home</NavLink>
                     </button>
@@ -63,7 +67,7 @@ function Game({
         <Container textAlign="center">
         <div class="ui inverted segment">
         {renderPage()}
-        <h4 textAlign="center">Points: {points == 0 ? 0 : points}</h4>
+        <h3 textAlign="center">Points: {points == 0 ? 0 : points}</h3>
         </div>
         </Container>
     )
