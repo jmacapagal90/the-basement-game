@@ -12,6 +12,7 @@ import AccountPage from "./AccountPage";
 import { Container } from 'semantic-ui-react'
 
 function App() {
+  const [ navbarOpen, setNavbarOpen ] = useState(false)
   const [ user, setUser ] = useState(null)
   const [ decisions, setDecisions ] = useState("");
   const [ userAnswer, setUserAnswer ] = useState(null)
@@ -141,9 +142,9 @@ function App() {
   return (
     <BrowserRouter>
       <Container textAlign="center">
-        <NavBar user={user} setUser={setUser} clearCache={clearCache}/>
+        <NavBar user={user} setUser={setUser} clearCache={clearCache} navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen}/>
       </Container>
-      <Container textAlign="center">
+      <Container textAlign="center" onClick={()=>setNavbarOpen(false)}>
         <Switch>
             <Route path='/playerlogin'>
                 {user ? (

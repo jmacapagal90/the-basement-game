@@ -30,7 +30,7 @@ function Scoreboard(){
     return (
       <Container textAlign="center">
       <div class="ui inverted segment">
-        <h1><span style={{textDecoration: 'line-through'}}>Death</span>Scoreboard</h1>
+        <h1>Our Latest Losers...</h1>
         <>{renderScores() ? renderScores() : <h2>Loading...</h2>}</>
       </div>
       </Container>

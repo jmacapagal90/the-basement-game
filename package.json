@@ -12,6 +12,8 @@
         "start": "node index.js"
     },
     "dependencies": {
+        "@react-icons/all-files": "^4.1.0",
+        "react-icons": "^4.4.0",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^2.1.3"
     }

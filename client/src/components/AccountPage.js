@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import UserScorecard from './UserScorecard';
 import { Link, Redirect } from 'react-router-dom';
-import {Container, Button,Reveal, Loader, Card} from 'semantic-ui-react'
+import {Container, Loader} from 'semantic-ui-react'
 
 function AccountPage({ user }) {
-    const myRef = useRef(null)
+
     async function handleDelete(){
         const response = await fetch(`/players/${user.id}`, {method: 'DELETE'})
         const data = response.json()
-        alert("Go Ahead and Leave, Coward")
+        alert("...We were just starting to have some fun")
         if (response.ok){
             <Redirect to='/' />
             window.location.reload()
@@ -16,19 +16,17 @@ function AccountPage({ user }) {
             console.log(data.error)
         }
     }
-    const executeScroll = () => {myRef.current.scrollIntoView({behavior: 'smooth',block: 'start'})}
-      
-      
+    
 
   return (
     <Container textAlign="center">
     {user ?
       <div class="ui inverted segment">
           <div>
+            <br></br>
+            <br></br>
             <h1>Welcome, @{user.username}!</h1>
             <h2>View your latest <span style={{textDecoration: 'line-through'}}>deaths</span> results here!</h2>
-            <h3>Had Enough?</h3>
-            <button class="ui inverted red basic button fluid" onClick={()=>executeScroll()}>Delete Account</button>
             <p></p>
             {user.scores_w_summary.map((score)=>{
                 return (
@@ -44,9 +42,9 @@ function AccountPage({ user }) {
               }
             )}
       </div>
-      <h4>You Didn't Think I'd Let You Leave That Easily...</h4>
-        <div ref={myRef}>
-            <button class="ui inverted red basic button" onClick={handleDelete}>Actually Delete My Account</button>
+      <h4>Had Enough?</h4>
+        <div >
+            <button class="ui inverted red basic button" onClick={handleDelete}>Delete My Account</button>
         </div>
       </div>
      : 
