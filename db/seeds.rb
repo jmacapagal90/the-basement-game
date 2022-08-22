@@ -42,14 +42,14 @@ Game.create!(
 
 Decision.create!(
     id: 1,
-    prompt: "You wake up in a dark, dingy basement. You yell for help, but no one answers. You are trapped. Through the darkness, you can make out a door. You walk to the door. Do you open it?",
+    prompt: "You wake up in a dark, dingy basement. \n You yell for help, but no one answers. \n You are trapped. \n Through the darkness, you can make out a door. You walk to the door.\n Do you open it?",
     answer: 0,
     prev_decision_id: nil
 )
 
 Outcome.create!(
     id:1,
-    result: "An axe falls from the ceiling and slices your head off... You are dead.  (Did you really think I would make it that easy?!)",
+    result: "An axe falls from the ceiling and slices your head off...\n  You are dead.\n  (Did you really think I would make it that easy?!)",
     summary: "Got the axe. #AxeBodySpray",
     decision_id: 1
 )
@@ -57,143 +57,269 @@ Outcome.create!(
 
 Decision.create!(
     id:2,
-    prompt: "You realize it won't be that easy, which is good, because tied to the door knob is a cord. If you turned that door knob, it would've cut the cord and sent an axe to chop off your head. Instead, you see the faint outline of a flashlight near the base of the door. You turn it on and look around. There's not much else in this room, except for a toolbox.  You walk to the toolbox. Do you open it?",
+    prompt: "You realize it won't be that easy- which is good.  If you turned that door knob, it would've cut a cord and sent an axe to chop off your head! \n Instead, you see the faint outline of a flashlight near the base of the door.\n You turn it on and look around.... There's not much else in this room- except for an old toolbox.\n Do you open it?",
     answer: 1,
     prev_decision_id: 1
 )
 
 Outcome.create!(
     id:2,
-    result: "The flashlight burns out. You sit in darkness for the next 3 weeks until you die of starvation... You are dead.",
+    result: "The flashlight burns out. You sit in darkness for the next 3 weeks until you die of starvation... \n You are dead.",
     summary: "Starved for attention. #AttentionAttention",
     decision_id: 2
 )
 
 Decision.create!(
     id:3,
-    prompt: "You open the toolbox, and find a walkie talkie. Do you use it?",
-    answer: 1,
+    prompt: "You first see a hammer.\n Do you pick it up?",
+    answer: 0,
     prev_decision_id: 2
 )
 
 Outcome.create!(
     id:3,
-    result: "The walkie talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded... You are dead.",
-    summary: "Was the Bomb. #BombAF",
+    result: "The hammer was a trip for a bear trap.\n You got trapped, and bled to death...\n You are dead.",
+    summary: "It's (literally) A Trap!. #ItzATrap",
     decision_id: 3
 )
 
 Decision.create!(
     id:4,
-    prompt: "You realize a faint ticking noise, but it silenced once you pressed the talk button of the walkie and mutter, \"Hello?\" In the silence, a crackly, old voice eeks out, \"What's a bear without an ear?\" The lights flash on. Aside from the chair and the door, there isn't much else in this lonely room. Suddenly, there's a large crash, and a trap door in the ceiling opens dropping a rope ladder. As you walk to the ladder, another trap door opens on the wall and starts spewing water and filling this tiny room!  You have seconds to decide before certain death.  Do you climb the ladder? ",
+    prompt: "You're smarter than that... \n Next to the hammer, you see a screw driver.\n Do you pick it up?",
     answer: 0,
     prev_decision_id: 3
 )
 
 Outcome.create!(
     id:4,
-    result: "You frantically pull on the rope ladder, and feel the slack give out. And then a gigantic anvil drops and smashes your head like a Wile E. Coyote... You are dead.",
-    summary: "Was a smash hit. #WouldGraveyardSmash",
+    result: "The screwdriver also was a trip for a bear trap.\n You got trapped, and bled to death...\n You are dead.",
+    summary: "Trapped and Screwed. #CatchMeInTheTrap",
     decision_id: 4
 )
 
 Decision.create!(
     id:5,
-    prompt: "You were about to climb the ladder, when you see a glint of metal above. Something doesn't feel right.  You decide to wait. The ladder gets pulled up. The water starts climbing. You begin to regret this decision. The water is nearly up to your eyes as you gasp for air when suddenly there's another loud click and you get flushed down through where once resided your chair!  You travel through a long tube until you plop down hard into another room. You're in a larger, but equally as plain room.  All that resides in the room is a sledgehammer, a Teddy Ruxbin stuffed bear missing an eye, and a decrepit old Chevelle SS.  You're fed up with this game- you could've been gaming!  Do you take the sledgehammer and smash the Chevelle?",
-    answer: 0,
+    prompt: "You were about to reach for it, but you notice the faint outline of a tripwire.\n This looks like a trap... \n You feel around carefully and lift up the toolbox shelf. \n You find a walkie-talkie.\n Do you use it?",
+    answer: 1,
     prev_decision_id: 4
 )
 
 Outcome.create!(
     id:5,
-    result: "You've had enough, and smash every window in the Chevelle. In your anger, you fail to notice a single Black Widow spider erupt from the head of the Teddy Ruxbin. Starving for flesh, they overwhelm you as you spend your last moments with a spider in your eyeball... You are dead. ",
-    summary: "Loves Natasha Romanoff. #ThanosWasRight",
+    result: "The walkie talkie was actually a bomb that set to be used within 30 seconds. You didn't use it, and, thus, it exploded...\n You are dead.",
+    summary: "Trapped and Screwed. #CatchMeInTheTrap",
     decision_id: 5
 )
 
 Decision.create!(
     id:6,
-    prompt: "You decide to let your cooler head preail. A voice echos from the walkie-talkie, \"I knew I got someone with intelligence.\" You reply, \"Just you wait.\"
-    The car turns on and starts billowing black fumes into the unventilated room.  You panic realizing you will suffocate inhaling unleaded 80 exhaust. You try to open the Chevelle- it's locked!  Thinking fast, you realize there must be weird, creepy significance with the bear.  You decide to investigate. Do you start by ripping it's head off? ",
+    prompt: "\"Hello?\" \n In the silence, an old voice eeks out, \"What's a bear without an ear?\" \nSuddenly, the lights flash on and, with a sudden crash, a trap door flies open from the ceiling dropping a rope ladder.\n Do you climb the ladder?",
     answer: 0,
     prev_decision_id: 5
 )
 
 Outcome.create!(
     id:6,
-    result: "A single Black Widow spider climbs out of the neck and stings you. You convulse on the ground... You are dead. ",
-    summary: "Can't wait for Black Widow 2. #ScarJoFace",
+    result: "You pull on the rope ladder, and a gigantic anvil drops and smashes your head like a Wile E. Coyote... \nYou are dead.",
+    summary: "Was a smash hit. #WouldGraveyardSmash",
     decision_id: 6
 )
 
 Decision.create!(
     id:7,
-    prompt: "Ripping it's head off seems too easy. You feel around the head, and in one of the ears, you feel a key.  You rip it off, stick the key into the Chevelle, and open the door.  You turn the other key in the ignition off. Suddenly, the glove compartment opens. There's an tablet in there. Do you turn it on? ",
-    answer: 1,
+    prompt: "You were about to climb the ladder, but something doesn't feel right.  You decide to wait... Suddenly, water starts flooding the tiny room! \n You begin to regret this decision. The ladder looks like your only hope...\n Do you climb the ladder?" ,
+    answer: 0,
     prev_decision_id: 6
 )
 
 Outcome.create!(
     id:7,
-    result: "You're being a little too untrustworthy, and this is getting old, no? The car explodes... You are dead. ",
-    summary: "Drove Them All Crazy. #GetOnTheBus",
+    result: "You pull on the rope ladder, and a gigantic anvil drops and smashes your head like a Wile E. Coyote... \nYou are dead.",
+    summary: "Was a smash hit. #WouldGraveyardSmash",
     decision_id: 7
 )
 
 Decision.create!(
     id:8,
-    prompt: "You turn the tablet on. It's a video of another person trapped in another sadistic torture room!   The walkie goes off, \"Here's your chance, slick. Get in the game...\"  Two buttons render on the screen (this guy must be a programmer). One button says, \"LIVE.\" The other button says, \"DIE.\"  Do you kill this other poor soul?",
-    answer: 0,
-    prev_decision_id: 7
-)
-
-Outcome.create!(
-    id:8,
-    result: "You are sick, you know that?  Just for that, the car fills with mayonaise, and you suffocate in mayo. Happy now, you psychopath?!",
-    summary: "Actually said they would sacrifice another person for their survival. #SuperSus",
-    decision_id: 8
-)
-
-Decision.create!(
-    id:9,
-    prompt: "\"Aww, what a little saint...\"  The tablet flickers off.  In the distance, light cuts through the darkness of this room. You realize this is just one big warehouse!  This is your one chance.  Do you start the car and get out of here?  ",
-    answer: 0,
-    prev_decision_id: 8
-)
-
-Outcome.create!(
-    id:9,
-    result: "Just as you make it to the door, the door slams shut, and you crash head on into a titanium garage door...  You are dead. ",
-    summary: "Didn't wear their seatbelt. #ClickItOrTicket",
-    decision_id: 9
-)
-
-Decision.create!(
-    id:10,
-    prompt: "You can't just leave that person behind.  The voice mutters through the walkie, \"You want them?  Tell me, them, and all my followers on my new snuff-inspired livestreaming app, TwitchBlade, your deepest, darkest secret, and they're all yours...\"  You finally get it now.  This sick f*** is trying to get his app off the ground!   All just for people's entertainment, at the expense of someone's life, sent over HTTP.  You think about the deepest, darkest secret you have. Everyone will know it. But if I don't, they'll think of me as a coward who let some poor soul die, all because of a secret.  Do you broadcast your deepest, darkest secret over the Internet? ",
+    prompt: "The water is nearly up to your eyes. You gasp for what little air is left in the tiny room. This is it. \n Suddenly, there's a drowned bang, and the water starts dropping! \n Tumbling through the trecherous waterslide (which, low-key, kinda fun), you plop down hard into another dark room. There's a faint chittering noise... Next to you is an emergency flare. \n Do you light it? ",  
     answer: 1,
     prev_decision_id: 7
 )
 
 Outcome.create!(
+    id:8,
+    result: "A thousand centipedes flood the room... You die of a heart of attack because centipedes are awful. \n You are dead.",
+    summary: "Favorite Movie: #HumanCentipede",
+    decision_id: 8
+)
+
+Decision.create!(
+    id:9,
+    prompt: "The minute you light the flare, you realize there are what looks to be thousands of centipedes surrounding you. Scared by your flare, they keep an wary arms length away from you. \n You scan the room, and make out a hallway.\n Do you make for the hallway?",  
+    answer: 1,
+    prev_decision_id: 8
+)
+
+Outcome.create!(
+    id:9,
+    result: "The flare burns out, and the centipedes are hungry... \n You die of a heart of attack because centipedes are awful. \n You are dead.",
+    summary: "Favorite Movie: #HumanCentipede",
+    decision_id: 9
+)
+
+Decision.create!(
     id:10,
-    result: "You decide to turn on the car to get out of here. Better them than you, amirite?.  The voice says, \"Great minds think alike...\"  You realize the other person got the same choice- and decided to kill you.  A huge boulder rolls down and smashes the car... You are dead.",
-    summary: "Messed around and found out. #FAFO",
+    prompt: "With the centipedes chasing you, you run down the hallway and reach an impasse.\n There's a path left, and a path right. \n Do you go left?",  
+    answer: 0,
+    prev_decision_id: 9
+)
+
+Outcome.create!(
+    id:10,
+    result: "The floor drops out. \n You land in a pit of Anacondas, who squeeze the life out of you... \n You are dead.",
+    summary: "Favorite Movie: #Anaconda",
     decision_id: 10
 )
 
 Decision.create!(
     id:11,
-    prompt: "You mutter your secret. A door opens. The other victim gets in the car. In the distance you see the door start to close from the top.  You only have a few minutes to get out.  You slam on the gas, hoping this Chevelle can relive it's glory days once more.  You barely make it out, scrapping the top of the car on the door.  You drive out, with the sun blinding your eyes, and contemplate what you just experience. The walkie utters a final ominous message, \"Like and Subscribe.\" Well... they certainly have a use-case... do you Like and Subscribe?",
-    answer: nil,
-    prev_decision_id: 7
+    prompt: "Do you go right?",  
+    answer: 1,
+    prev_decision_id: 10
 )
 
 Outcome.create!(
     id:11,
+    result: "You didn't go left. You didn't go right. You stayed put. Which is great, because that left time for a gigantic boulder crash down on you... \n You are dead",
+    summary: "Decisions, decisions... #RockAndAHardPlace",
+    decision_id: 11
+)
+
+Decision.create!(
+    id:12,
+    prompt: "The centipedes are gaining on you. Running down the hallway, you see the faint outline of a door. \n This might be your only chance- do you bowl right through it? ",  
+    answer: 0,
+    prev_decision_id: 11
+)
+
+Outcome.create!(
+    id:12,
+    result: "You run really hard at the door, which would have worked in the movies, but, IRL, that's a reinforced steel door... \n You knock yourself out and the centipedes devour your remains. ",
+    summary: "Knock knock! Who's there? Centipedes? Centipede who? I'm about to #centipede my pants, can I use your bathroom?",
+    decision_id: 12
+)
+
+Decision.create!(
+    id:13,
+    prompt: "You frantically get to the door, and try the knob.\n It's surprisingly unlocked? You slide it open. Do you go inside?",  
+    answer: 1,
+    prev_decision_id: 12
+)
+
+Outcome.create!(
+    id:13,
+    result: "The centipedes catch up. I mean they do have 1000 legs... \n You are dead.",
+    summary: "Knock knock! Who's there? Centipedes? Centipede who? I'm about to #centipede my pants, can I use your bathroom?",
+    decision_id: 13
+)
+
+Decision.create!(
+    id:14,
+    prompt: "All that resides in the room is a sledgehammer, a Teddy Ruxbin stuffed bear missing an eye, and a decrepit old Chevelle SS.  You're fed up with this game.  Do you take the sledgehammer and smash the Chevelle?",  
+    answer: 0,
+    prev_decision_id: 13
+)
+
+
+Outcome.create!(
+    id:14,
+    result: "You smash the car, and, boy, does it feel good! Except, it explodes... \n You are dead. ",
+    summary: "I lived my life a #QuarterMile at a time.",
+    decision_id: 14
+)
+
+Decision.create!(
+    id:15,
+    prompt:  "The car turns on and starts billowing black fumes into the unventilated room.  You panic realizing you will suffocate. You try to open the Chevelle- it's locked!  \"The Bear...\"\n  Do you rip it's head off? ",
+    answer: 0,
+    prev_decision_id: 14
+)
+
+Outcome.create!(
+    id:15,
+    result: "You rip it's head off, and it sprays poisonous gas in your face... \n You are dead. ",
+    summary: "Can't wait for Black Widow 2. #ScarJoFace",
+    decision_id: 15
+)
+
+Decision.create!(
+    id:16,
+    prompt: "\"Bear without an ear...\" you mutter to yourself. You feel one of the ears- there's a key! You frantically open the door, and turn off the ignition. Suddenly, the glove compartment opens. There's an tablet in there.\n  Do you turn it on? ",
+    answer: 1,
+    prev_decision_id: 15
+)
+
+Outcome.create!(
+    id:16,
+    result: "The tablet was set to be used in 30 seconds. The car explodes...\n  You are dead. ",
+    summary: "Drove Them All Crazy. #GetOnTheBus",
+    decision_id: 16
+)
+
+Decision.create!(
+    id:17,
+    prompt: "You turn the tablet on. It's a video of another person trapped in another sadistic torture room!   The radio goes off, \"Here's your chance, slick. Get in the game...\"  Two buttons render on the screen:. \"LIVE.\" and \"DIE.\"\n   Do you kill this person?",
+    answer: 0,
+    prev_decision_id: 16
+)
+
+Outcome.create!(
+    id:17,
+    result: "You are sick, you know that?  The car fills with mayonaise, and you suffocate in mayo. Happy now, you psychopath?!",
+    summary: "Actually said they would sacrifice another person for their survival. #SuperSus",
+    decision_id: 17
+)
+
+Decision.create!(
+    id:18,
+    prompt: "\"Aww, what a little saint...\" creaks the radio voice. The tablet flickers off.  In the distance, a garage door opens. \n This is your one chance.\n Do you start the car and get out of here?  ",
+    answer: 0,
+    prev_decision_id: 17
+)
+
+Outcome.create!(
+    id:18,
+    result: "Just as you make it to the door, the door slams shut, and you crash head on into a titanium garage door...  You are dead. ",
+    summary: "Didn't wear their seatbelt. #ClickItOrTicket",
+    decision_id: 18
+)
+
+Decision.create!(
+    id:19,
+    prompt: "You can't just leave that person behind.  The voice mutters through the radio, \"You wanna save them?  Tell me and all the followers on my stream your deepest, darkest secret...\"  The disgusting truth hits you: this psycho is just trying to get his app off the ground!\n You start to think about your secrets... If I do, who knows what will happen?\n But if I don't, I'll have killed someone else to save my ego.\n  Do you broadcast your deepest, darkest secret over the Internet?",
+    answer: 1,
+    prev_decision_id: 18
+)
+
+Outcome.create!(
+    id:19,
+    result: "Screw it. Better 'em than you, amirite? You turn on the car. The voice says, \"Great minds think alike...\" The other person made the same choice... The car explodes. \n You are dead.",
+    summary: "Messed around and found out. #FAFO",
+    decision_id: 19
+)
+
+Decision.create!(
+    id:20,
+    prompt: "You utter your secret...\n A door opens.\n A scared kid runs into the car. In the distance, you see the garage door start to close... You slam on the gas, hoping this Chevelle still has some juice left.  You scrape the top of the car on the door as it slams behind you..  With the sun blinding your eyes, you contemplate what you just experience. The radio utters a final ominous message: \"Like and Subscribe.\" \n Well... do you?",
+    answer: nil,
+    prev_decision_id: 19
+)
+
+Outcome.create!(
+    id:20,
     result: "Thanks for playing my game!  If you liked it, do not like and subscribe. Instead, go and live your life. And then maybe play it again. And then also follow my game on Instagram, @thebasementgame, for more updates, including maps, new features, and more!",
     summary: "Got out alive. Barely. #MadeIt",
-    decision_id: 11
+    decision_id: 20
 )
 puts "Finished Seeding The Game"
 puts "Seeding The Other Stuff"

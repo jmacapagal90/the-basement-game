@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
-import { Container } from 'semantic-ui-react'
+import { Container,Form,Segment } from 'semantic-ui-react'
 
 function Login({ setUser }) {
   const [username, setUsername] = useState('');
@@ -32,43 +32,39 @@ function Login({ setUser }) {
     
   return (
     <Container textAlign='center'>
-    <div class="ui inverted segment">
+    <Segment inverted>
       <h1>Login</h1>
-      <h3 style={{ color: "red" }}>{error}</h3>
-      <form class="ui inverted form" onSubmit={(e)=>handleSubmit(e)}>
-          <div class="two fields">
-            <div class="field">
-                  <label htmlFor='username'>Username</label>
-                  <input
-                    type='text'
-                    id='username'
-                    autoComplete='off'
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+      <h3 style={{ color: "red" }}>{error ? error : null}</h3>
+      <Form inverted onSubmit={(e)=>handleSubmit(e)}>
+        <Form.Group widths="equal">
+          <Form.Input
+                  label="Username"
+                  type='text'
+                  id='username'
+                  autoComplete='off'
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   />
-            </div>
-            <div class="field">
-                <label htmlFor='password'>Password</label>
-                <input
+            <Form.Input 
+                  label='Password'
                   type='password'
                   id='password'
                   autoComplete='current-password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-            </div>
-          </div>
-      <button class="ui inverted red basic button" type='submit'>Login</button>
-      </form>
+          </Form.Group>
+      <button class="ui inverted red basic massive button" type='submit'>Login</button>
+      </Form>
     
       
       <h3>Already A Player?</h3> 
-      <button class="ui inverted red basic button"><NavLink to='/playersignup' activeStyle={{color: "red"}}>Sign Up</NavLink></button>
+      <button class="ui inverted red basic mini button"><NavLink to='/playersignup' activeStyle={{color: "red"}}>Sign Up</NavLink></button>
       
       
       
 
-    </div>
+    </Segment>
     </Container>
   );
 }

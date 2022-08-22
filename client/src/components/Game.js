@@ -1,5 +1,6 @@
+import { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
-import { Header,Container,Item } from 'semantic-ui-react'
+import { Container,Transition } from 'semantic-ui-react'
 
 function Game({ 
         findDecision, 
@@ -14,15 +15,31 @@ function Game({
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
-    
+    const [ visible, setVisible ] = useState(false)
+
+    useEffect(() => {
+        setVisible(false)
+    },[userAnswer])
+
+    useEffect(() => {
+        setVisible(true)
+    },[turn])
+
+
+
+    console.log(turn)
     /// handling Prompt
     function handlePrompt(){
         return (        
             <div class="ui inverted segment">
                 <br></br>
                 <br></br>
-                <h2 class="ui header" id="prompt">{prompt}</h2>
-                <h4 class="ui horizontal inverted divider">Choose...</h4>     
+                <Transition visible={visible} animation='fade' duration={2000}>
+                    <h4 class="ui header" id="prompt">{prompt}</h4>
+                </Transition>
+                <br></br>
+                <h4 class="ui horizontal inverted divider">Choose...</h4>  
+                <br></br>
                 <div class="ui fluid buttons">         
                     <button class="positive ui button" onClick={()=>handleTrue()}>Yes</button>
                     <div class="or"></div>
@@ -35,9 +52,11 @@ function Game({
     function handleDeath(){
         return (
             <div class="ui inverted segment">
-                                <br></br>
                 <br></br>
-                <h1 class="ui header" id="death">{result}</h1>
+                <br></br>
+                <Transition visible={true} animation='bounce' duration={500}>
+                    <h3 class="ui header" id="death">{result}</h3>
+                </Transition>
                     <button class="ui inverted red basic button">
                         <NavLink to="/" onClick={()=>clearCache()} activeStyle={{color: "red"}}>Return Home</NavLink>
                     </button>

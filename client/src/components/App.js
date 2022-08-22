@@ -1,5 +1,5 @@
 // client/src/components/App.js
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Game from './Game';
 import Home from './Home';
@@ -14,6 +14,7 @@ import { Container } from 'semantic-ui-react'
 function App() {
   const [ navbarOpen, setNavbarOpen ] = useState(false)
   const [ user, setUser ] = useState(null)
+  // const { isAuthenticated, logout } = useAuth0();
   const [ decisions, setDecisions ] = useState("");
   const [ userAnswer, setUserAnswer ] = useState(null)
   const [ isCorrect, setIsCorrect ] = useState(false)
@@ -21,7 +22,7 @@ function App() {
   const [ gameID,setGameID] = useState(0)
   const [ scoreID, setScoreID] = useState(0)
   const [ points, setPoints ] = useState(0)
-  const isFirstRender = useRef(false)
+
   
   // login
   useEffect(() => {
