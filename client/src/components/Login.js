@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 import { NavLink, Redirect } from 'react-router-dom';
 import { Container } from 'semantic-ui-react'
+import LoginButton from './LoginButton';
+
 
 function Login({ setUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState([])
+
+  const LoginButton = () => {
+    const { loginWithRedirect } = useAuth0();
+  
+    return <button onClick={() => loginWithRedirect()}>Log In</button>;
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -58,7 +67,7 @@ function Login({ setUser }) {
                 />
             </div>
           </div>
-      <button class="ui inverted red basic button" type='submit'>Login</button>
+     <LoginButton />
       </form>
     
       

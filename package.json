@@ -12,6 +12,7 @@
         "start": "node index.js"
     },
     "dependencies": {
+        "@auth0/auth0-react": "^1.10.2",
         "@react-icons/all-files": "^4.1.0",
         "react-icons": "^4.4.0",
         "semantic-ui-css": "^2.4.1",
