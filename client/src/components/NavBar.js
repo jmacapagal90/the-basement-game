@@ -32,9 +32,9 @@ function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen }) {
         {user ? (
           <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
             <NavLink to='/' className="nav-link" onClick={()=>handleClick()}>Home</NavLink>
-            <NavLink to="/" className="nav-link" onClick={()=>handleLogout()}>Logout</NavLink>
-            <NavLink to="/scoreboard" className="nav-link"onClick={()=>handleClick()}>Scoreboard</NavLink>
             <NavLink to="/account" className="nav-link"onClick={()=>handleClick()}>My Account</NavLink>
+            <NavLink to="/scoreboard" className="nav-link"onClick={()=>handleClick()}>Scoreboard</NavLink>
+            <NavLink to="/" className="nav-link" onClick={()=>handleLogout()}>Logout</NavLink>
           </ul>
         ) : (
           <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>

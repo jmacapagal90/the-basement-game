@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
-import { Container } from 'semantic-ui-react'
+import { Container,Form,Segment } from 'semantic-ui-react'
 
 function SignUp({ setUser }) {
   const [username, setUsername] = useState('');
@@ -43,72 +43,60 @@ function SignUp({ setUser }) {
 
   return (
     <Container textAlign='center'>
-      <div class="ui inverted segment">
+      <Segment inverted>
         <h1>Sign Up</h1>
         {errors && errors.length > 0 ? (errors.map((error)=>{return(
           <h3 style={{ color: "red" }}>{error}</h3>
           )})
         ) : <></>}
-        <form class="ui inverted form" onSubmit={handleSubmit}>
-          <div class="four fields">
-            <div class="field">
-              <label htmlFor='last-name'>Email</label>
-              <input
-                type='text'
-                id='email'
+        <Form inverted onSubmit={(e)=>handleSubmit(e)}>
+          <Form.Group widths="equal">
+
+              <Form.Input 
+                required
+                label="E-mail"
                 autoComplete='off'
+                placeholder="helpme@aol.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div class="field">
-              <label htmlFor='username'>Username</label>
-              <input
+              <Form.Input
+                required
+                label="Username"
                 type='text'
                 id='username'
+                placeholder="helpme"
                 autoComplete='off'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-            </div>
-            <div class="field">
-              <label htmlFor='password'>Password</label>
-              <input
+              <Form.Input
+                required
+                label="Password"
                 type='password'
                 id='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 autoComplete='current-password'
               />
-            </div>
-            <div class="field">
-              <label htmlFor='password'>Password Confirmation</label>
-              <input
+              <Form.Input
+                required
+                label="Confirm Password"
                 type='password'
                 id='password_confirmation'
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 autoComplete='current-password'
               />
-            </div>
-          <div class="ui inverted segment">
-            <div class="inline field">
-              <div class="checkbox" >
-                    <input type="checkbox" tabindex="0" class="hidden" checked={checked} onChange={()=>setChecked(!checked)}/>
-                    <label>I acknowledge that this is a game solely for entertainment purposes. Any depictions or portrayals in this game are strictly fictional. I agree that 
-                      this was made by an unemployed recent Bootcamp Graduate and to be cool.
-                    </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="ui inverted red basic button" type='submit'>Sign Up</button>
-        </form>
+          </Form.Group >
+          <Form.Checkbox label="I acknowledge that this is a game solely for entertainment purposes. Any depictions or portrayals in this game are strictly fictional."/>
+          <button class="ui inverted red basic massive button" type='submit'>Sign Up</button>
+        </Form>
 
-        <h3>Already a Player?</h3>
-        <button class="ui inverted red basic button"><NavLink to='/playerlogin' activeStyle={{color: "red"}}>Sign In</NavLink></button>
+        <h3>Already Part of the Game?</h3>
+        <button class="ui inverted red basic mini button"><NavLink to='/playerlogin' activeStyle={{color: "red"}}>Sign In</NavLink></button>
 
-        </div>
+        </Segment>
     </Container>
   );
 }
