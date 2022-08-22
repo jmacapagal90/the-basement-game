@@ -45,6 +45,10 @@ function SignUp({ setUser }) {
     <Container textAlign='center'>
       <div class="ui inverted segment">
         <h1>Sign Up</h1>
+        {errors && errors.length > 0 ? (errors.map((error)=>{return(
+          <h3 style={{ color: "red" }}>{error}</h3>
+          )})
+        ) : <></>}
         <form class="ui inverted form" onSubmit={handleSubmit}>
           <div class="four fields">
             <div class="field">
@@ -103,10 +107,7 @@ function SignUp({ setUser }) {
 
         <h3>Already a Player?</h3>
         <button class="ui inverted red basic button"><NavLink to='/playerlogin' activeStyle={{color: "red"}}>Sign In</NavLink></button>
-        {errors && errors.length > 0 ? (errors.map((error)=>{return(
-          <p style={{ color: "red" }}>{error}</p>
-          )})
-        ) : <></>}
+
         </div>
     </Container>
   );

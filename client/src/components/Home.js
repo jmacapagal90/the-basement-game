@@ -25,6 +25,7 @@ function Home({ user,startGame }){
                 <button class="ui inverted red basic button">
                     <NavLink to='/playerlogin'>Login to Play</NavLink>
                 </button>
+                <Scoreboard />
             </div>
      )
     }}

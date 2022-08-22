@@ -34,18 +34,25 @@ function Login({ setUser }) {
     <Container textAlign='center'>
     <div class="ui inverted segment">
       <h1>Login</h1>
+      <h3 style={{ color: "red" }}>{error}</h3>
       <form class="ui inverted form" onSubmit={(e)=>handleSubmit(e)}>
           <div class="two fields">
             <div class="field">
-                  <label for='username'>Username</label>
+                  <label htmlFor='username'>Username</label>
                   <input
+                    type='text'
+                    id='username'
+                    autoComplete='off'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
             </div>
             <div class="field">
-                <label for='password'>Password</label>
+                <label htmlFor='password'>Password</label>
                 <input
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -55,10 +62,10 @@ function Login({ setUser }) {
       </form>
     
       
-      <h3>Wanna Play?</h3> 
-        <button class="ui inverted red basic button"><NavLink to='/playersignup' activeStyle={{color: "red"}}>Sign Up</NavLink></button>
+      <h3>Already A Player?</h3> 
+      <button class="ui inverted red basic button"><NavLink to='/playersignup' activeStyle={{color: "red"}}>Sign Up</NavLink></button>
       
-      <p style={{ color: "red" }}>{error}</p>
+      
       
 
     </div>
