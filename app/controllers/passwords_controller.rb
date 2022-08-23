@@ -1,17 +1,17 @@
 class PasswordsController < ApplicationController
     def forgot
         if params[:email].blank? # check if email is present
-          return render json: {error: 'Email not present'}
+          return render json: {errors: 'Email not present'}
         end
     
         player = Player.find_by(email: params[:email]) # if present find user by email
     
         if player.present?
             player.generate_password_token! #generate pass token
-          PlayerMailer.reset_password_email(player).deliver_now
+            PlayerMailer.reset_password_email(player).deliver_now
           render json: {status: 'ok'}, status: :ok
         else
-          render json: {error: ['Email address not found. Please check and try again.']}, status: :not_found
+          render json: {errors: ['Email address not found. Please check and try again.']}, status: :not_found
         end
     end
     
@@ -24,14 +24,16 @@ class PasswordsController < ApplicationController
 
         player = Player.find_by(reset_password_token: token)
 
-        if player.present? && user.password_token_valid?
-            if user.reset_password!(params[:password])
-            render json: {status: 'ok'}, status: :ok
+        if player.present? && player.password_token_valid?
+            if player.reset_password!(params[:password])
+                render json: {status: 'ok'}, status: :ok
             else
-            render json: {error: user.errors.full_messages}, status: :unprocessable_entity
+                render json: {errors: player.errors.full_messages}, status: :unprocessable_entity
             end
         else
-            render json: {error:  ['Link not valid or expired. Try generating a new link.']}, status: :not_found
+            render json: {errors:  ['Link not valid or expired. Try generating a new link.']}, status: :not_found
         end
     end
+
+
 end

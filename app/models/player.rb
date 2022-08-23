@@ -5,7 +5,7 @@ class Player < ApplicationRecord
 
     has_secure_password
 
-    validates :username,:password,:email, presence: true
+    validates :username,:email, presence: true
     validates :username,:email, uniqueness: true
     validates :username, :password, :email, format: { without: /\s/}
     validates :username, :email, obscenity: {message: "... Naughty, naughty ..."}
