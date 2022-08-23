@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       to: 'fallback#index',
       constraints: ->(req) { !req.xhr? && req.format.html? }
 
-  
+  post 'password/forgot', to: 'passwords#forgot'
+  post 'password/reset', to: 'passwords#reset'
 end
 
