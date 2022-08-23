@@ -137,7 +137,11 @@ function App() {
       <Container textAlign="center" onClick={()=>setNavbarOpen(false)}>
         <Switch>
            <Route path='/resetpassword'>
+           {user ? (
+                  <Redirect to='/' />
+                ) : (
                 <ResetPassword setUser={setUser}/>
+                )}
             </Route>
             <Route path='/playerlogin'>
                 {user ? (
