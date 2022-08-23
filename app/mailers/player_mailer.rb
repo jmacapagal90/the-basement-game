@@ -8,4 +8,6 @@ class PlayerMailer < ApplicationMailer
         @player = player
         mail(to: @player.email, subject: 'The Basement: Reset Password')
     end
+
+    
 end

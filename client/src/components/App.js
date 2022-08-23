@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import Scoreboard from "./Scoreboard";
 import GameLanding from "./GameLanding";
 import AccountPage from "./AccountPage";
+import ResetPassword from './ResetPassword'
 import { Container } from 'semantic-ui-react'
 
 function App() {
@@ -135,6 +136,9 @@ function App() {
       </Container>
       <Container textAlign="center" onClick={()=>setNavbarOpen(false)}>
         <Switch>
+           <Route path='/resetpassword'>
+                <ResetPassword setUser={setUser}/>
+            </Route>
             <Route path='/playerlogin'>
                 {user ? (
                   <Redirect to='/' />
