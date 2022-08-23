@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
         if player.valid?
             session[:user_id] = player.id
             render json: player, status: :created
+            PlayerMailer.welcome_email(player).deliver_now
         else
             render json: {error: player.errors.full_messages}, status: :unprocessable_entity
         end
