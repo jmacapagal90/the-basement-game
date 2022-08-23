@@ -120,7 +120,7 @@ Decision.create!(
 
 Outcome.create!(
     id:6,
-    result: "You pull on the rope ladder, and a gigantic anvil drops and smashes your head like a Wile E. Coyote... \nYou are dead.",
+    result: "You pull on the rope ladder, and a gigantic anvil drops and smashes your head like Wile E. Coyote... \nYou are dead.",
     summary: "Was a smash hit. #WouldGraveyardSmash",
     decision_id: 6
 )

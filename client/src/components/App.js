@@ -44,7 +44,8 @@ function App() {
   
   //POST Game & Score
   async function startGame(){
-   const response = await fetch('/scores',{
+    setVisible(false)
+    const response = await fetch('/scores',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ function App() {
     } else {
         return 
     }
-    
+    setVisible(false)
   }
 
 
@@ -121,6 +122,7 @@ function App() {
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)
+    setVisible(false)
    
   }
 

@@ -18,7 +18,9 @@ function Game({
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
 
-
+    useEffect(() => {
+        setVisible(true)
+    },[])
 
     useEffect(() => {
         setVisible(false)
