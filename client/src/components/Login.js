@@ -44,8 +44,7 @@ function Login({ setUser }) {
     
     const data = response.json()
       if (response.ok) {
-        data.then((data) => setUser(data));
-        <Redirect to='/' />;
+        return
       } else {
         data.then((err) => setError(err.error))
       }

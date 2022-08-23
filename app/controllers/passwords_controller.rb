@@ -16,6 +16,7 @@ class PasswordsController < ApplicationController
     end
     
     def reset
+        
         token = params[:token].to_s
 
         if params[:email].blank?
@@ -33,6 +34,7 @@ class PasswordsController < ApplicationController
         else
             render json: {errors:  ['Link not valid or expired. Try generating a new link.']}, status: :not_found
         end
+
     end
 
 
