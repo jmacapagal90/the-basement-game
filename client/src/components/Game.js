@@ -10,12 +10,15 @@ function Game({
         userAnswer, 
         clearCache,
         points,
-        turn
+        turn,
+        visible,
+        setVisible
      }){
     const { prompt }  = findDecision 
     const { outcomes } = findDecision 
     const result = outcomes && outcomes.map((outcome)=> outcome.result)
-    const [ visible, setVisible ] = useState(false)
+
+
 
     useEffect(() => {
         setVisible(false)
@@ -25,9 +28,6 @@ function Game({
         setVisible(true)
     },[turn])
 
-
-
-    console.log(turn)
     /// handling Prompt
     function handlePrompt(){
         return (        

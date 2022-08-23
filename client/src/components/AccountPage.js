@@ -28,7 +28,7 @@ function AccountPage({ user }) {
             <h1>Welcome, @{user.username}!</h1>
             <h2>View your latest <span style={{textDecoration: 'line-through'}}>deaths</span> results here!</h2>
             <p></p>
-            {user.scores_w_summary.map((score)=>{
+            {user.scores_w_summary.slice(0,10).map((score)=>{
                 return (
                   <div class="ui inverted cards">
                     <UserScorecard 

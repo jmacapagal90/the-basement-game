@@ -1,15 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useLocation  } from 'react-router-dom';
 import { AiOutlineClose } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { IconContext } from "react-icons";
 
 
-function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen }) {
+function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen,handleUpdate }) {
+  let location = useLocation()
 
   function handleClick(){
     clearCache()
     setNavbarOpen(false)
+    if (location.pathname == '/playgame'){
+      alert("Quitter...")
+      handleUpdate()
+    }
   }
 
   function handleLogout(){

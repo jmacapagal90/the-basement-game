@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
 import UserScorecard from "./UserScorecard";
-import { Container } from 'semantic-ui-react'
+import { Container,List,Transition } from 'semantic-ui-react'
 
-function Scoreboard(){
-    const [ scores, setScores ] = useState([])
-    
-    useEffect(() => {
+function Scoreboard({visible,setVisible}){
+  const [ scores, setScores ] = useState([])
+  useEffect(() => {
       const fetchScores = async () => {
-          await fetch("/scores")
-                      .then((r) => r.json())
-                      .then((score_data) => setScores(score_data));
-      }  
-        fetchScores().catch(console.error)
-    }, []);
-
+      await fetch("/scores").then((r) => r.json()).then((score_data) => setScores(score_data))
+    }
+    fetchScores().catch(console.error)
+  },[])
   
-    const renderScores = () => scores.map((score)=> (
+    const renderScores = () => scores && scores.slice(0,10).map((score)=> (
       <div class="ui inverted cards">
           <UserScorecard 
             key={score.id}
@@ -25,13 +21,14 @@ function Scoreboard(){
             updated_at={score.updated_at}
           />
         </div>
+
     ))
 
     return (
       <Container textAlign="center">
       <div class="ui inverted segment">
         <h1>Our Latest Losers...</h1>
-        <>{renderScores() ? renderScores() : <h2>Loading...</h2>}</>
+        <>{renderScores()}</>
       </div>
       </Container>
     )

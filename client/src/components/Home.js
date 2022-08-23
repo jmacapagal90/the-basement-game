@@ -1,9 +1,13 @@
-import { Header,Container } from 'semantic-ui-react'
+import { Container,Transition } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
 import Scoreboard from "./Scoreboard";
+import { useState, useEffect } from 'react';
 
-function Home({ user,startGame }){
+function Home({ user,startGame,visible,setVisible }){
 
+    useEffect(() => {
+        setVisible(true)
+    },[])
 
     function renderHome(){
     if (user) {
@@ -11,11 +15,15 @@ function Home({ user,startGame }){
             <div class="ui inverted segment">
                 <br></br>
                 <br></br>
-                <h1 class="ui huge header">Welcome To The Basement...</h1>
+                <Transition visible={visible} animation='fade' duration={2000}>
+                    <h1 class="ui huge header">Welcome To The Basement...</h1>
+                </Transition>
                 <button class="ui inverted red basic button">
                     <NavLink to='/startgame' onClick={()=>startGame()}>Play</NavLink>
                 </button>
-                <Scoreboard />
+                <Transition.Group visible={visible} animation='fade' duration={2000}>
+                    <Scoreboard />
+                </Transition.Group >
             </div>
         )
     } else {

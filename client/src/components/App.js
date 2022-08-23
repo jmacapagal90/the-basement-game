@@ -1,6 +1,6 @@
 // client/src/components/App.js
 import { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect,useLocation } from "react-router-dom";
 import Game from './Game';
 import Home from './Home';
 import Login from './Login';
@@ -12,6 +12,7 @@ import AccountPage from "./AccountPage";
 import { Container } from 'semantic-ui-react'
 
 function App() {
+  
   const [ navbarOpen, setNavbarOpen ] = useState(false)
   const [ user, setUser ] = useState(null)
   // const { isAuthenticated, logout } = useAuth0();
@@ -22,38 +23,23 @@ function App() {
   const [ gameID,setGameID] = useState(0)
   const [ scoreID, setScoreID] = useState(0)
   const [ points, setPoints ] = useState(0)
-
+  const [ visible, setVisible ] = useState(false)
   
-  // login
-  useEffect(() => {
-    // auto-login
-    fetch('/myaccount').then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
-
-  //fetch Decision w Outcome Data
-  useEffect(() => {
-    //Fetch Decisions Async
-    const fetchDecisions = async () => {
-        await fetch("/decisions")
-                    .then((r) => r.json())
-                    .then((decision_data) => setDecisions(decision_data));
-    }
-
-    fetchDecisions().catch(console.error)
-  }, []);
   
-  //this UseEffect is running on first render
+  // initialize data
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch("/decisions").then((r) => r.json()).then((decision_data) => setDecisions(decision_data));
+      await fetch('/myaccount').then((r) => r.json().then((user) => setUser(user)));
+    }     
+    fetchData().catch(console.error)
+  },[])
+  
+  //Check answer everytime user answers
   useEffect(()=>{
       checkAnswer()
   },[userAnswer]) 
- 
-  //this is grabbing one decision for now
 
-  //need to find where prev_decision_id = current_id - 1?
   const findDecision =  decisions && decisions.find(decision => decision.id === turn)
   
   //POST Game & Score
@@ -135,7 +121,7 @@ function App() {
     setIsCorrect(null)
     setTurn(1)
     setPoints(0)
-    handleUpdate()
+   
   }
 
 
@@ -143,7 +129,7 @@ function App() {
   return (
     <BrowserRouter>
       <Container textAlign="center">
-        <NavBar user={user} setUser={setUser} clearCache={clearCache} navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen}/>
+        <NavBar  handleUpdate={handleUpdate} user={user} setUser={setUser} clearCache={clearCache} navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen}/>
       </Container>
       <Container textAlign="center" onClick={()=>setNavbarOpen(false)}>
         <Switch>
@@ -162,10 +148,15 @@ function App() {
               )}
           </Route>
           <Route exact path="/">
-            <Home user={user} startGame={startGame}/>
+            <Home 
+              user={user} 
+              startGame={startGame} 
+              visible={visible} 
+              setVisible={setVisible}
+            />
           </Route>
           <Route exact path="/scoreboard">
-            <Scoreboard user={user} />
+          <Scoreboard user={user} visible={visible} setVisible={setVisible}/>
           </Route>
           <Route exact path="/startgame">
             <GameLanding />
@@ -189,6 +180,8 @@ function App() {
             points={points}
             handleTrue={handleTrue}
             handleFalse={handleFalse}
+            visible={visible}
+            setVisible={setVisible}
             />
           </Route>
         </Switch>
