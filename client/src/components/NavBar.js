@@ -28,9 +28,10 @@ function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen,handleUpda
 
   return (
     <nav className='navBar'>
-      <button onClick={()=>setNavbarOpen(!navbarOpen)} >{navbarOpen ? (
+      <button onClick={()=>setNavbarOpen(!navbarOpen)} >
+        {navbarOpen ? (
           <IconContext.Provider value={{ className: 'react-icons' }}><AiOutlineClose/></IconContext.Provider>
-        ) : (
+          ) : (
           <IconContext.Provider value={{ className: 'react-icons' }}><FiMenu/></IconContext.Provider>
         )}
       </button>
@@ -45,6 +46,7 @@ function NavBar({ user, setUser, clearCache, navbarOpen,setNavbarOpen,handleUpda
           <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
             <NavLink to='/' className="nav-link" onClick={()=>handleClick()}>Home</NavLink>
             <NavLink to="/scoreboard" className="nav-link"onClick={()=>handleClick()}>Scoreboard</NavLink>
+            <NavLink to="/playerlogin" className="nav-link" onClick={()=>handleClick()}>Login</NavLink>
         </ul>
         )}
       

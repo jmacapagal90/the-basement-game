@@ -14,7 +14,7 @@ class PlayersController < ApplicationController
     end
 
     def index 
-        render json: Player.all, status: :ok
+        render json: Player.all.order(updated_at: :desc), status: :ok
     end
 
     def show 
