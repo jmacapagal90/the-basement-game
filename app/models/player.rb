@@ -8,6 +8,7 @@ class Player < ApplicationRecord
     
     validates :username,:email, presence: true
     validates :username,:email, uniqueness: true
+    validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
     validates :username, :password, :email, format: { without: /\s/}
     validates :username, :email, obscenity: {message: "... Naughty, naughty ..."}
 

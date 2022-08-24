@@ -9,9 +9,9 @@ function SignUp({ setUser }) {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState([])
   const [checked,setChecked] = useState(0)
-
+  console.log(checked)
   async function handleSubmit(e) {
-    if (checked === 0){
+    if (checked === false){
       alert("Please acknowledge terms and conditions")
       return 
     }
@@ -89,7 +89,7 @@ function SignUp({ setUser }) {
                 autoComplete='current-password'
               />
           </Form.Group >
-          <Form.Checkbox label="I acknowledge that this is a game solely for entertainment purposes. Any depictions or portrayals in this game are strictly fictional."/>
+          <Form.Checkbox onChange={()=>setChecked(!checked)}label="I acknowledge that this is a game solely for entertainment purposes. Any depictions or portrayals in this game are strictly fictional."/>
           <button class="ui inverted red basic massive button" type='submit'>Sign Up</button>
         </Form>
 
