@@ -11,6 +11,7 @@ import GameLanding from "./GameLanding";
 import AccountPage from "./AccountPage";
 import ResetPassword from './ResetPassword'
 import ForgotPassword from './ForgotPassword';
+import AboutPage from "./AboutPage";
 import { Container } from 'semantic-ui-react'
 
 function App() {
@@ -139,7 +140,10 @@ function App() {
         <Switch>
         <Route path='/forgotpassword'>
                   <ForgotPassword/>
-            </Route>
+        </Route>
+        <Route path='/about'>
+                  <AboutPage />
+        </Route>
            <Route path='/resetpassword'>
                 {user ? (
                   <Redirect to='/' />
