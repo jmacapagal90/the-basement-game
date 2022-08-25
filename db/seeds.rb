@@ -334,23 +334,23 @@ Player.create!(
 
 Player.create!(
     id: 2,
-    username: "ramm9490",
+    username: "IAmATryHard55",
     password: "test",
-    email: "ramm9490@gmail.com"
+    email: "test123@gmail.com"
 )
 
 Player.create!(
     id: 3,
-    username: "nobleToad",
+    username: "StuckInTheBasement33",
     password: "test",
-    email: "nobleToad@gmail.com"
+    email: "321test@gmail.com"
 )
 
 Player.create!(
     id: 4,
-    username: "ShooterMcFahey",
+    username: "whiteRabbit11",
     password: "test",
-    email: "ShooterMcFahey@gmail.com"
+    email: "555test@gmail.com"
 )
 
 Score.create!(
