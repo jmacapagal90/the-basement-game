@@ -31,6 +31,9 @@ function AboutPage(){
                         <a target="_blank" href="https://github.com/jmacapagal90">Github</a>
                     </List.Item>
                     <List.Item>
+                        <a target="_blank" href="https://dev.to/jmacapagal90">DEV Blog</a>
+                    </List.Item>
+                    <List.Item>
                         <a target="_blank" href="mailto:j.macapagal90@gmail.com">Email</a>
                     </List.Item>
                 </List>
